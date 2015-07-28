@@ -10,9 +10,11 @@
 
 <body>
 {% block body %}
-<a href="{% url 'golf_app:scorecard_detail' hole.scorecard.id  %}">{{ hole.scorecard.course_name }}</a>
+<a href="{% url 'golf_app:scorecard_detail' hole.scorecard.id  %}">{{ hole.scorecard.course_name }} Scorecard</a>
 </br>
-    Scorecard: {{ scorecard.course_name }} Hole Number: {{ hole.hole_number }}
+    <div>
+        Hole Number: {{ hole.hole_number }}
+    </div>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
