@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+{% block body %}
+<a href="{% url 'golf_app:scorecard_detail' hole.scorecard.id  %}">{{ hole.scorecard.course_name }}</a>
+</br>
+    Scorecard: {{ scorecard.course_name }} Hole Number: {{ hole.hole_number }}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    hello
+    <button type="submit" value="update">Submit</button>
+</form>
+{% endblock %}
+
+</body>
+</html>

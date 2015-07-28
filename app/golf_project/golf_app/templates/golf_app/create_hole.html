@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+ </head>
+<body>
+{% block body %}
+<a href="{% url 'golf_app:scorecard_detail hole.id' %}">New Hole</a>
+are you getting here?
+    <h1>Create Hole</h1>
+<form method="get">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" value="post">Add Hole!</button>
+    </form>
+
+{% endblock %}
+</body>
+
+</html>

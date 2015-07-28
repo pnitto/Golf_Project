@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+
+{% block body %}
+<a href="{% url 'golf_app:home' %}">Home</a>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <button type="submit">Login</button>
+        <input type="hidden" name="next" value='{% url "golf_app:home" %}' />
+    </form>
+
+{% endblock %}
