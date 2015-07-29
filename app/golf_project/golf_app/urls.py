@@ -2,7 +2,7 @@
 from django.conf.urls import include, url
 from .views import home, HoleListView, HoleUpdateView, user_registration, HoleCreateView, HoleDetailView, \
     ScorecardListView, ScorecardCreateView, CommentListView, CommentUpdateView, CommentDeleteView, CommentCreateView, \
-    ScorecardDetailView
+    ScorecardDetailView, ScorecardDeleteView
 from django.contrib.auth.views import login, logout
 
 urlpatterns = [
@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^comment_history/$', CommentListView.as_view(), name="comment_history"),
     url(r'^update_comment/(?P<pk>\d+)/$', CommentUpdateView.as_view(), name="update_comment"),
     url(r'^delete_comment/(?P<pk>\d+)$', CommentDeleteView.as_view(), name="delete_comment"),
-    url(r'create_comment/$', CommentCreateView.as_view(), name="create_comment"),
-    url(r'scorecard_detail/(?P<pk>\d+)$', ScorecardDetailView.as_view(), name="scorecard_detail")
+    url(r'^create_comment/$', CommentCreateView.as_view(), name="create_comment"),
+    url(r'^scorecard_detail/(?P<pk>\d+)$', ScorecardDetailView.as_view(), name="scorecard_detail"),
+    url(r'^delete_scorecard/(?P<pk>\d+)$', ScorecardDeleteView.as_view(), name="delete_scorecard")
 ]

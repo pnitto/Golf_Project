@@ -13,12 +13,14 @@
 <a href="{% url 'golf_app:scorecard_detail' hole.scorecard.id  %}">{{ hole.scorecard.course_name }} Scorecard</a>
 </br>
     <div>
-        Hole Number: {{ hole.hole_number }}
+    <ul>
+        <li>Par Type: {{ hole.par_type }}</li>
+        <li>Hole Number: {{ hole.hole_number }}</li>
+    </ul>
     </div>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    hello
     <button type="submit" value="update">Submit</button>
 </form>
 {% endblock %}

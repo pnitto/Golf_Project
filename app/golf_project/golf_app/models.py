@@ -23,7 +23,7 @@ class Hole(models.Model):
     scorecard = models.ForeignKey(Scorecard)
     hole_number = models.PositiveSmallIntegerField(validators=[MinValueValidator(1),MaxValueValidator(18)])
     par_type = models.PositiveSmallIntegerField(validators=[MinValueValidator(3), MaxValueValidator(5)]) # need to make this (3, 4, or 5)
-    hole_length = models.PositiveSmallIntegerField()
+    hole_length = models.PositiveSmallIntegerField(null=True)
     player_score = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(12)]) # need to make this between 1 - 10
     green_in_regulation = models.BooleanField()
     fairway_in_regulation = models.BooleanField()

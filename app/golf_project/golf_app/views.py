@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 
@@ -66,13 +66,30 @@ class HoleUpdateView(UpdateView):
     fields = ['player_score', 'green_in_regulation', 'fairway_in_regulation']
     template = "hole_form.html"
     success_url = reverse_lazy("golf_app:scorecard_detail")
-# I need this view to go back to the scorecard
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['scorecard_pk'] = self.kwargs.get('pk')
+        return context
+
+    def form_valid(self, form):
+        score_pk = Hole.objects.get(id=self.kwargs['pk']).scorecard.id
+        form.instance.scorecard_id = score_pk
+        form.instance.scorecard = Hole.objects.get(id=self.kwargs['pk']).scorecard
+        self.success_url = reverse_lazy("golf_app:scorecard_detail", kwargs={'pk': score_pk})
+        return super().form_valid(form)
+
 
 class HoleCreateView(CreateView):
     model = Hole
     fields = ['hole_number','par_type','player_score', 'green_in_regulation', 'fairway_in_regulation']
-    template = "create_hole.html"
-    success_url = reverse_lazy("golf_app:scorecard_detail")
+    template_name = "golf_app/create_hole.html"
+    #success_url = reverse_lazy("golf_app:scorecard_detail")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['scorecard_pk'] = self.kwargs.get('pk')
+        return context
 
     #Thank you Bekk!!!!!! He helped me a lot with this!!
     def form_valid(self, form):
@@ -87,9 +104,8 @@ class HoleDetailView(DetailView):
     model = Hole
     fields = ['scorecard', 'hole_number', 'par_type', 'hole_length', 'player_score', 'green_in_regulation',
               'fairway_in_regulation']
-    #Need this view to go back to the scorecard
     success_url = reverse_lazy("golf_app:scorecard_detail")
-    template = "hole_detail.html"
+    template = "golf_app/hole_detail.html"
     slug_field = "id"
 
 
@@ -109,6 +125,10 @@ class ScorecardCreateView(CreateView):
     model = Scorecard
     fields = ['course_name']
     template = "scorecard_form.html"
+    success_url = reverse_lazy("golf_app:scorecard_history")
+
+class ScorecardDeleteView(DeleteView):
+    model = Scorecard
     success_url = reverse_lazy("golf_app:scorecard_history")
 
 

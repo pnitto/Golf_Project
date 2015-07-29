@@ -20,6 +20,10 @@
     <ul>
     <li><strong><a href="{% url 'golf_app:scorecard_detail' scorecard.id %}">{{ scorecard.course_name }}</a> on {{ scorecard.timestamp }} </strong></li>
         </ul>
+<div><form method="get" action="{% url 'golf_app:delete_scorecard' scorecard.id %}">
+            {% csrf_token %}
+            <button type="submit"><strong>Delete Scorecard</strong></button>
+        </form></div>
 </div>
 {% endfor %}
 {% endblock %}
