@@ -6,11 +6,13 @@
 </head>
 <body>
 {% block body %}
+<div align="center">
 <a href="{% url 'golf_app:home' %}">Home</a>
 <a href="{% url 'golf_app:comment_history' %}">Course Comment</a>
+</div>
 </br>
 
-<h1>Recent Scorecards</h1>
+<h1>Scorecard History</h1>
 <div><form method="post" action="{% url 'golf_app:create_scorecard' %}">
             {% csrf_token %}
             <button type="submit"><strong>Add Scorecard</strong></button>

@@ -8,28 +8,36 @@
 </head>
 <body>
 {% block body %}
+<div align="center">
 <a href="{% url 'golf_app:home' %}">Home</a>
 <a href="{% url 'golf_app:scorecard_history' %}">Recent Scorecards</a>
 <a href="{% url 'golf_app:comment_history' %}">Course Comment</a>
-   <h3>{{ scorecard.course_name }}</h3>
+</div>
+   <h3 align="center">{{ scorecard.course_name }}</h3>
+    <div align="center"><strong>{{ user.username }}'s current score:</strong> {{ scorecard.hole_score }}</div>
+    <div align="center"><strong>GIR %:</strong> {{ scorecard.gir_percentage }}</div>
+    <div align="center"><strong>FIR %:</strong> {{ scorecard.fir_percentage }}</div>
+    <div align="center"><strong>Over/Under Par(-) :</strong> {{ scorecard.over_under_par }}</div>
 </br>
  <div><form method="post" action="{% url 'golf_app:create_hole' scorecard.id %}">
             {% csrf_token %}
-            <button type="submit"><strong>Next Hole</strong></button>
+            <button type="submit"><strong>Add Hole</strong></button>
         </form></div>
 </br>
 {% for hole in object.hole_set.all %}
-        <div>
-            Hole Number:  {{hole.hole_number}}
-        </div>
-        <div><form method="get" action="{% url 'golf_app:update_hole' hole.id %}">
+         <div align="center"><form method="get" action="{% url 'golf_app:hole_detail' hole.id %}">
+                {% csrf_token %}
+         <p>Hole Number: </p><button type="submit"><strong>{{ hole.hole_number }}</strong></button>
+            </form></div>
+        <div align="center"><form method="get" action="{% url 'golf_app:update_hole' hole.id %}">
             {% csrf_token %}
             <button type="submit"><strong>Edit Hole</strong></button>
         </form></div>
-            <div><form method="get" action="{% url 'golf_app:hole_detail' hole.id %}">
-                {% csrf_token %}
-                <button type="submit"><strong>Hole Information</strong></button>
-            </form></div>
+
+    <div align="center"><form method="get" action="{% url 'golf_app:delete_hole' hole.id %}">
+            {% csrf_token %}
+            <button type="submit"><strong>Delete Hole</strong></button>
+        </form></div>
 {% endfor %}
 {% endblock %}
 </body>

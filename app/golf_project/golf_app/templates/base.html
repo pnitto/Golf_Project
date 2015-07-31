@@ -9,11 +9,14 @@
 {% block body %}
 <body>
 
+<div align="center">
 <a href="{% url 'golf_app:home' %}">Home</a>
-<a href="{% url 'golf_app:scorecard_history' %}">Scorecard</a>
+<a href="{% url 'golf_app:scorecard_history' %}">Your Scorecards</a>
 <a href="{% url 'golf_app:comment_history' %}">Course Comment</a>
-<div>
-<h1>{{ user.username }}</h1>
+</div>
+
+<h1 align="center"> Welcome {{ user.username }}!</h1>
+<div align="center">
     {% if user.id %}
         <a href="{% url 'golf_app:logout' %}">Logout</a>
     {% else %}
@@ -21,6 +24,29 @@
         <a href="{% url 'golf_app:user_registration' %}">Sign up</a>
     {% endif %}
 </div>
+<div>
+{% block content %}
+
+{% endblock %}
+</div>
+<table align="center" border="1">
+<tr>
+    <td>Average Round Score:</td>
+    <td>{{ player.scorecard.average_score }}</td>
+</tr>
+<tr>
+    <td>Best Round:</td>
+    <td>wanted to</td>
+</tr>
+<tr>
+    <td>FIR %:</td>
+    <td>see what</td>
+</tr>
+<tr>
+    <td>GIR %:</td>
+    <td>this looked like</td>
+</tr>
+</table>
 </body>
 {% endblock %}
 </html>

@@ -13,7 +13,7 @@
 <a href="{% url 'golf_app:scorecard_history' %}">Scorecard History</a>
 <body>
 </br>
-<p>Are you sure you want to delete the {{ scorecard.course_name }} scorecard ?</p>
+<p>Are you sure you want to delete the {{ scorecard.course_name }} scorecard?</p>
 <form method="POST">
     {% csrf_token %}
     {{ form }}
