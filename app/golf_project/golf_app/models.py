@@ -4,22 +4,47 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.shortcuts import redirect
 from statistics import mean
-
-
 from rest_framework.compat import MinValueValidator, MaxValueValidator
 
 
 class Golfer(models.Model):
     name = models.CharField(max_length=50)
-    player = models.OneToOneField(User, null=True)
+    player = models.OneToOneField(User, related_name='golfer')
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "{}".format(self.name)
 
     @property
     def average_score(self):
-        for x in self.scorecard_set.all():
-            return
-        return mean(self.hole_set.all().exclude(player_score=None).values_list('player_score', flat=True))
+        if self.scorecard_set.all().count() == 0:
+            return 0
+        else:
+            value = []
+            for x in self.scorecard_set.all():
+                value.append(x.hole_score)
+            return round(sum(value) / len(value), 1)
+        # not using mean because if there are no scorecards I need to be able to return 0
+        # using the mean method, I would have to have at least one data point unless I get an error
+    @property
+    def average_gir(self):
+        if self.scorecard_set.all().count() == 0:
+            return 0
+        else:
+            average = []
+            for gir in self.scorecard_set.all():
+                average.append(gir.gir_percentage)
+            return round(sum(average) / len(average), 0)
 
+    @property
+    def average_fir(self):
+        if self.scorecard_set.all().count() == 0:
+            return 0
+        else:
+            average = []
+            for fir in self.scorecard_set.all():
+                average.append(fir.fir_percentage)
+            return round(sum(average) / len(average), 0)
 
 class ScorecardManager(models.Manager):
 
@@ -44,6 +69,11 @@ class Scorecard(models.Model):
     def __str__(self):
         return "{} - {}".format(self.course_name, self.timestamp)
 
+    """@property
+    def par_3_count(self):
+        return self.hole_set.all().exclude(player_score=)
+    pass"""
+
     @property
     def hole_score(self):
         return sum(self.hole_set.all().exclude(player_score=None).values_list('player_score', flat=True))
@@ -66,7 +96,6 @@ class Scorecard(models.Model):
         return sum(self.hole_set.all().exclude(player_score=None).values_list('player_score', flat=True)) - sum(self.hole_set.all().exclude(par_type=None).values_list('par_type', flat=True))
 
 
- #Thanks Joel and Bekk!!!
 @receiver(post_save, sender=Scorecard, dispatch_uid="18_holes.post_save")
 def instant_scorecard_creation(sender, instance, created, **kwargs):
     if created:
@@ -87,14 +116,6 @@ class Hole(models.Model):
 
     class Meta:
         ordering = ['hole_number']
-
-    """@property
-    def average_per_round(self):
-        score_average = sum(field) / len(field)
-        return score_average
-        pass
-    #sudo code ^^^"""
-
 
 
 class Comment(models.Model):

@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
 from rest_framework import serializers
 from rest_framework import generics
-from .models import Hole, Scorecard, Comment
+from .models import Hole, Scorecard, Comment, Golfer
 
 
 def user_registration(request):
@@ -36,7 +36,6 @@ def user_registration(request):
 def home(request):
     context = {}
     return render_to_response("base.html", context, context_instance=RequestContext(request))
-
 
 # Not sure if I even need serializers yet!!
 class HoleDetailSerializer(serializers.ModelSerializer):
@@ -147,6 +146,12 @@ class ScorecardCreateView(CreateView):
     fields = ['course_name']
     template = "scorecard_form.html"
     success_url = reverse_lazy("golf_app:scorecard_history")
+
+    def form_valid(self, form):
+        golfer = Golfer.objects.get(player=self.request.user)
+        form.instance.player = golfer
+        return super().form_valid(form)
+
 
     @method_decorator(login_required(login_url='golf_app:login'))
     def dispatch(self, *args, **kwargs):
