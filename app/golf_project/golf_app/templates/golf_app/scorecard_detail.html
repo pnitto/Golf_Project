@@ -18,6 +18,8 @@
     <div align="center"><strong>GIR %:</strong> {{ scorecard.gir_percentage }}</div>
     <div align="center"><strong>FIR %:</strong> {{ scorecard.fir_percentage }}</div>
     <div align="center"><strong>Over/Under Par(-) :</strong> {{ scorecard.over_under_par }}</div>
+    <div align="center"><strong>Number of Pars: </strong>{{ scorecard.par_count }}</div>
+    <div align="center"><strong>Number of Birdies:</strong>{{ scorecard.birdie_count }}</div>
 </br>
  <div><form method="post" action="{% url 'golf_app:create_hole' scorecard.id %}">
             {% csrf_token %}

@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect
@@ -9,10 +10,32 @@ from django.views.generic import ListView, UpdateView, CreateView, DetailView, D
 from rest_framework import serializers
 from rest_framework import generics
 from .models import Hole, Scorecard, Comment, Golfer
+from .forms import UserForm, GolferForm
 
 
 def user_registration(request):
-    if request.POST:
+    context = RequestContext(request)
+    registered = False
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        golfer_form = GolferForm(data=request.POST)
+        if user_form.is_valid() and golfer_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            golfer = golfer_form.save(commit=False)
+            golfer.player = user
+            golfer.save()
+            registered = True
+        else:
+            pass
+    else:
+        user_form = UserForm()
+        golfer_form = GolferForm()
+    return render_to_response('registration/create_user.html',{'user_form': user_form, 'golfer_form': golfer_form, 'registered': registered} , context)
+
+
+    """if request.POST:
         username = request.POST['username']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
@@ -26,12 +49,13 @@ def user_registration(request):
             return redirect("golf_app:login")
         except ValueError:
             return render_to_response("registration/create_user.html",
-                                      {'form': user_form},
+                                      {'form': user_form
+                                      {'golfer_form':g   },
                                       context_instance=RequestContext(request))
 
     return render_to_response("registration/create_user.html",
                               {'form': UserCreationForm()},
-                              context_instance=RequestContext(request))
+                              context_instance=RequestContext(request))"""
 
 def home(request):
     context = {}

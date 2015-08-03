@@ -12,6 +12,7 @@ class Golfer(models.Model):
     player = models.OneToOneField(User, related_name='golfer')
     timestamp = models.DateTimeField(auto_now_add=True)
 
+
     def __str__(self):
         return "{}".format(self.name)
 
@@ -24,8 +25,7 @@ class Golfer(models.Model):
             for x in self.scorecard_set.all():
                 value.append(x.hole_score)
             return round(sum(value) / len(value), 1)
-        # not using mean because if there are no scorecards I need to be able to return 0
-        # using the mean method, I would have to have at least one data point unless I get an error
+
     @property
     def average_gir(self):
         if self.scorecard_set.all().count() == 0:
@@ -45,6 +45,7 @@ class Golfer(models.Model):
             for fir in self.scorecard_set.all():
                 average.append(fir.fir_percentage)
             return round(sum(average) / len(average), 0)
+
 
 class ScorecardManager(models.Manager):
 
@@ -69,10 +70,19 @@ class Scorecard(models.Model):
     def __str__(self):
         return "{} - {}".format(self.course_name, self.timestamp)
 
-    """@property
-    def par_3_count(self):
-        return self.hole_set.all().exclude(player_score=)
-    pass"""
+    # It is counting any 3,4,5 as a par. I only want to count pars if player score is equal to par type on the instance
+    @property
+    def par_count(self):
+        par_3_count = (self.hole_set.filter(par_type=3).exclude(par_type__in=[4,5]) and self.hole_set.filter(player_score=3).exclude(player_score__in=[4,5])).count()
+        par_4_count = (self.hole_set.filter(par_type=4).exclude(par_type__in=[3,5]) and self.hole_set.filter(player_score=4).exclude(player_score__in=[3,5])).count()
+        par_5_count = (self.hole_set.filter(par_type=5).exclude(par_type__in=[3,4]) and self.hole_set.filter(player_score=5).exclude(player_score__in=[3,4])).count()
+        return sum([par_3_count, par_4_count, par_5_count])
+
+    """def birdie_count(self):
+        birdie_on_par_3 = (self.hole_set.filter(par_type=3).exclude(par_type__in=[4,5]) and self.hole_set.filter(player_score=2)).count()
+        birdie_on_par_4 = (self.hole_set.filter(par_type=4).exclude(par_type__in=[3,5]) and self.hole_set.filter(player_score=3)).count()
+        birdie_on_par_5 = (self.hole_set.filter(par_type=5).exclude(par_type__in=[3,4]) and self.hole_set.filter(player_score=4)).count()
+        return sum([birdie_on_par_3, birdie_on_par_4, birdie_on_par_5])"""
 
     @property
     def hole_score(self):

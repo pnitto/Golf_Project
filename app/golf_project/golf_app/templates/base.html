@@ -2,6 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ STATIC_URL }}style.css" />
     <title></title>
 </head>
 {% block head %}
@@ -40,7 +42,7 @@
 </tr>
 <tr>
     <td>Average GIR %: </td>
-    <td>{{ user.golfer.average_gir}}</td>
+    <td>{{ user.golfer.average_gir }}</td>
 </tr>
 <tr>
     <td>Best Round:</td>
