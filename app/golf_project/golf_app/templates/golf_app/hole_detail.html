@@ -9,21 +9,36 @@
 <body>
 
 {% block body %}
+<div align="center">
 <a href="{%  url 'golf_app:home' %}">Home</a>
 <a href="{%  url 'golf_app:scorecard_history' %}">Recent Scorecards</a>
 <a href="{%  url 'golf_app:scorecard_detail' hole.scorecard.id %}"> {{ hole.scorecard.course_name }} Scorecard</a>
-    <h1>Hole {{ hole.hole_number }} Detail</h1>
+</div>
+    <h1>Hole {{ hole.hole_number }} Detail</h1><div align="left"><form method="get" action="{% url 'golf_app:update_hole' hole.id %}"><button type="submit"><strong>Edit Hole</strong></button>
+            {% csrf_token %}
+        </form></div>
+
     <a href="{% url 'golf_app:scorecard_history' %}">{{ scorecard.course_name }}</a>
         <div>
             <ul>
         <li><strong>Hole Number:</strong> {{ hole.hole_number }}</li>
         <li><strong>Par Type</strong>: {{ hole.par_type }}</li>
         <li><strong>Player Score:</strong> {{ hole.player_score }}</li>
-        <li><strong>GIR:</strong> {{ hole.green_in_regulation }}</li>
-        <li><strong>FIR:</strong> {{ hole.fairway_in_regulation }}</li>
+        <li><strong>GIR:</strong> {{ hole.gir }}</li>
+        <li><strong>FIR:</strong> {{ hole.fir }}</li>
         <li><strong>Timestamp:</strong> {{ hole.timestamp }}</li>
             </ul>
         </div>
+    {% if hole.previous_hole %}
+    <a href="{% url 'golf_app:hole_detail' hole.previous_hole.id %}">Previous </a>
+    {% else %}
+    Previous
+    {% endif %}
+    {% if hole.next_hole %}
+    <a href="{% url 'golf_app:hole_detail' hole.next_hole.id %}">Next</a>
+    {% else %}
+    Next
+    {% endif %}
 {% endblock %}
 </body>
 

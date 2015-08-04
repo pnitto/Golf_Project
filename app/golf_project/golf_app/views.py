@@ -6,11 +6,26 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView
+from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView, TemplateView
 from rest_framework import serializers
 from rest_framework import generics
+from golf_app.converter import scatter_to_base64
 from .models import Hole, Scorecard, Comment, Golfer
 from .forms import UserForm, GolferForm
+import pandas as pd
+
+
+
+
+def graph(request):
+    df = pd.read_sql_query('player_score', index_col='hole_number',con=engine)
+    print(df)
+    return
+
+
+class IndexView(TemplateView):
+    template_name = "golf_app:index.html"
+
 
 
 def user_registration(request):
@@ -27,6 +42,7 @@ def user_registration(request):
             golfer.player = user
             golfer.save()
             registered = True
+            return redirect("golf_app:login")
         else:
             pass
     else:
@@ -34,28 +50,10 @@ def user_registration(request):
         golfer_form = GolferForm()
     return render_to_response('registration/create_user.html',{'user_form': user_form, 'golfer_form': golfer_form, 'registered': registered} , context)
 
-
-    """if request.POST:
-        username = request.POST['username']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-        user_form = UserCreationForm({
-            'username': username,
-            'password1': password1,
-            'password2': password2,
-        })
-        try:
-            user_form.save(commit=True)
-            return redirect("golf_app:login")
-        except ValueError:
-            return render_to_response("registration/create_user.html",
-                                      {'form': user_form
-                                      {'golfer_form':g   },
-                                      context_instance=RequestContext(request))
-
-    return render_to_response("registration/create_user.html",
-                              {'form': UserCreationForm()},
-                              context_instance=RequestContext(request))"""
+def graph_view_matplot_lib(request):
+    graph_one = scatter_to_base64(([1, 2, 3, 4], [10, 1, 5, 3]))
+    graph_two = scatter_to_base64(([1, 2, 3, 4], [1, 1, 1, 5]))
+    return render_to_response("base.html", {"graph_one": graph_one, "graph_two": graph_two})
 
 def home(request):
     context = {}
@@ -98,7 +96,7 @@ class HoleUpdateView(UpdateView):
         score_pk = Hole.objects.get(id=self.kwargs['pk']).scorecard.id
         form.instance.scorecard_id = score_pk
         form.instance.scorecard = Hole.objects.get(id=self.kwargs['pk']).scorecard
-        self.success_url = reverse_lazy("golf_app:scorecard_detail", kwargs={'pk': score_pk})
+        self.success_url = reverse_lazy("golf_app:hole_detail", kwargs={'pk': self.kwargs['pk']})
         return super().form_valid(form)
 
     @method_decorator(login_required(login_url='golf_app:login'))

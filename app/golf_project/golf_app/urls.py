@@ -3,8 +3,11 @@ from django.conf.urls import include, url
 from django.contrib.auth.decorators import login_required
 from .views import home, HoleListView, HoleUpdateView, user_registration, HoleCreateView, HoleDetailView, \
     ScorecardListView, ScorecardCreateView, CommentListView, CommentUpdateView, CommentDeleteView, CommentCreateView, \
-    ScorecardDetailView, ScorecardDeleteView, HoleDeleteView
+    ScorecardDetailView, ScorecardDeleteView, HoleDeleteView, IndexView, graph_view_matplot_lib
 from django.contrib.auth.views import login, logout
+
+
+
 
 urlpatterns = [
     url(r'^holes/$', HoleListView.as_view(),name="holes"),
@@ -23,5 +26,8 @@ urlpatterns = [
     url(r'^create_comment/$', CommentCreateView.as_view(), name="create_comment"),
     url(r'^scorecard_detail/(?P<pk>\d+)$', ScorecardDetailView.as_view(), name="scorecard_detail"),
     url(r'^delete_scorecard/(?P<pk>\d+)$', ScorecardDeleteView.as_view(), name="delete_scorecard"),
-    url(r'^delete_hole/(?P<pk>\d+)$', HoleDeleteView.as_view(), name="delete_hole")
+    url(r'^delete_hole/(?P<pk>\d+)$', HoleDeleteView.as_view(), name="delete_hole"),
+    url(r'^index', IndexView.as_view(), name="index"),
+    url(r'^graph', graph_view_matplot_lib, name="graph")
+
 ]

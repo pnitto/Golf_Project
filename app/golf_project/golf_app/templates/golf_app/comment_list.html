@@ -10,7 +10,7 @@
 <a href="{% url 'golf_app:home' %}">Home</a>
 <a href="{% url 'golf_app:scorecard_history' %}">Your Scorecards</a>
 </div>
-<h1>Comment History</h1>
+<h1>Comments</h1>
 <div><form method="post" action="{% url 'golf_app:create_comment' %}">
             {% csrf_token %}
             <button type="submit"><strong>Add Comment</strong></button>
@@ -26,9 +26,8 @@
         <div><form method="get" action="{% url 'golf_app:update_comment' comment.id %}">
             {% csrf_token %}
             <button type="submit"><strong>Edit Comment</strong></button>
-        </form></div>
-    </div>
-        <div><form method="get" action="{% url 'golf_app:delete_comment' comment.id %}">
+        </form>
+        <form method="get" action="{% url 'golf_app:delete_comment' comment.id %}">
             {% csrf_token %}
             <button type="submit"><strong>Delete Comment</strong></button>
         </form></div>

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import F
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.shortcuts import redirect
@@ -70,19 +71,10 @@ class Scorecard(models.Model):
     def __str__(self):
         return "{} - {}".format(self.course_name, self.timestamp)
 
-    # It is counting any 3,4,5 as a par. I only want to count pars if player score is equal to par type on the instance
     @property
     def par_count(self):
-        par_3_count = (self.hole_set.filter(par_type=3).exclude(par_type__in=[4,5]) and self.hole_set.filter(player_score=3).exclude(player_score__in=[4,5])).count()
-        par_4_count = (self.hole_set.filter(par_type=4).exclude(par_type__in=[3,5]) and self.hole_set.filter(player_score=4).exclude(player_score__in=[3,5])).count()
-        par_5_count = (self.hole_set.filter(par_type=5).exclude(par_type__in=[3,4]) and self.hole_set.filter(player_score=5).exclude(player_score__in=[3,4])).count()
-        return sum([par_3_count, par_4_count, par_5_count])
-
-    """def birdie_count(self):
-        birdie_on_par_3 = (self.hole_set.filter(par_type=3).exclude(par_type__in=[4,5]) and self.hole_set.filter(player_score=2)).count()
-        birdie_on_par_4 = (self.hole_set.filter(par_type=4).exclude(par_type__in=[3,5]) and self.hole_set.filter(player_score=3)).count()
-        birdie_on_par_5 = (self.hole_set.filter(par_type=5).exclude(par_type__in=[3,4]) and self.hole_set.filter(player_score=4)).count()
-        return sum([birdie_on_par_3, birdie_on_par_4, birdie_on_par_5])"""
+        par_count = (self.hole_set.filter(par_type=F('player_score'))).count()
+        return par_count
 
     @property
     def hole_score(self):
@@ -121,12 +113,34 @@ class Hole(models.Model):
     hole_length = models.PositiveSmallIntegerField(null=True)
     player_score = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(12)], null=True)
     green_in_regulation = models.BooleanField(default=False)
-    fairway_in_regulation = models.BooleanField(default=False )
+    fairway_in_regulation = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['hole_number']
 
+    def bool_cleaner(self, field):
+        return "Yes" if field else "No"
+
+    @property
+    def gir(self):
+        return self.bool_cleaner(self.green_in_regulation)
+
+    @property
+    def fir(self):
+        return self.bool_cleaner(self.fairway_in_regulation)
+
+    @property
+    def previous_hole(self):
+        return Hole.objects.get(scorecard=self.scorecard,hole_number=self.hole_number - 1)
+
+    @property
+    def next_hole(self):
+         return Hole.objects.get(scorecard=self.scorecard,hole_number=self.hole_number + 1)
+
+    @property
+    def hole_over_under_par(self):
+        return self.player_score - self.par_type
 
 class Comment(models.Model):
     player = models.ForeignKey(Golfer)

@@ -6,8 +6,9 @@
 <h1>Sign up</h1>
   <form method="post">
         {% csrf_token %}
-        {{ golfer_form }}
-        {{ user_form }}
+        Please Enter your first and last name
+        {{ golfer_form.as_p }}
+        {{ user_form.as_p }}
         <button type="submit" name="register">Create Golfer!</button>
       <input type="hidden" name="next" value='{% url "golf_app:login"  %}' />
     </form>

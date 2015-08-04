@@ -17,30 +17,29 @@
     <div align="center"><strong>{{ user.username }}'s current score:</strong> {{ scorecard.hole_score }}</div>
     <div align="center"><strong>GIR %:</strong> {{ scorecard.gir_percentage }}</div>
     <div align="center"><strong>FIR %:</strong> {{ scorecard.fir_percentage }}</div>
-    <div align="center"><strong>Over/Under Par(-) :</strong> {{ scorecard.over_under_par }}</div>
-    <div align="center"><strong>Number of Pars: </strong>{{ scorecard.par_count }}</div>
-    <div align="center"><strong>Number of Birdies:</strong>{{ scorecard.birdie_count }}</div>
+    <div align="center"><strong>Over/Under Par(-) Total :</strong> {{ scorecard.over_under_par }}</div>
 </br>
- <div><form method="post" action="{% url 'golf_app:create_hole' scorecard.id %}">
-            {% csrf_token %}
-            <button type="submit"><strong>Add Hole</strong></button>
-        </form></div>
-</br>
-{% for hole in object.hole_set.all %}
-         <div align="center"><form method="get" action="{% url 'golf_app:hole_detail' hole.id %}">
-                {% csrf_token %}
-         <p>Hole Number: </p><button type="submit"><strong>{{ hole.hole_number }}</strong></button>
-            </form></div>
-        <div align="center"><form method="get" action="{% url 'golf_app:update_hole' hole.id %}">
-            {% csrf_token %}
-            <button type="submit"><strong>Edit Hole</strong></button>
-        </form></div>
+    <div>
+      <table border="1" align="center" class="bordered">
+        <thead>
+          <tr>
+              <th data-field="id">Hole Number</th>
+              <th data-field="id">Player Score</th>
+              <th data-field="id">Over/Under Par(-)</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for hole in object.hole_set.all %}
+          <tr>
+            <td align="center"><a href="{% url 'golf_app:hole_detail' hole.id %}">{{ hole.hole_number }}</a></td>
+            <td>{{ hole.player_score }}</td>
+            <td>{{ hole.hole_over_under_par }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
 
-    <div align="center"><form method="get" action="{% url 'golf_app:delete_hole' hole.id %}">
-            {% csrf_token %}
-            <button type="submit"><strong>Delete Hole</strong></button>
-        </form></div>
-{% endfor %}
+
 {% endblock %}
 </body>
 </html>

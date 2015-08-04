@@ -13,9 +13,7 @@
 <a href="{% url 'golf_app:scorecard_detail' hole.scorecard.id  %}">{{ hole.scorecard.course_name }} Scorecard</a>
 </br>
     <div>
-    <ul>
-        <li>Hole Number: {{ hole.hole_number }}</li>
-    </ul>
+        Hole Number: {{ hole.hole_number }}
     </div>
 <form method="post">
     {% csrf_token %}
