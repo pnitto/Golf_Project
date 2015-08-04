@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^scorecard_detail/(?P<pk>\d+)$', ScorecardDetailView.as_view(), name="scorecard_detail"),
     url(r'^delete_scorecard/(?P<pk>\d+)$', ScorecardDeleteView.as_view(), name="delete_scorecard"),
     url(r'^delete_hole/(?P<pk>\d+)$', HoleDeleteView.as_view(), name="delete_hole"),
-    url(r'^index', IndexView.as_view(), name="index"),
-    url(r'^graph', graph_view_matplot_lib, name="graph")
+    url(r'^index/$', IndexView.as_view(), name="index"),
+    url(r'^graph/$', graph_view_matplot_lib, name="graph")
 
 ]

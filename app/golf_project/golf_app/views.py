@@ -24,7 +24,7 @@ def graph(request):
 
 
 class IndexView(TemplateView):
-    template_name = "golf_app:index.html"
+    template_name = "golf_app/index.html"
 
 
 
@@ -202,15 +202,29 @@ class CommentUpdateView(UpdateView):
     template = "comment_form.html"
     success_url = reverse_lazy('golf_app:comment_history')
 
+    @method_decorator(login_required(login_url='golf_app:login'))
+    def dispatch(self, *args, **kwargs):
+        return super(CommentUpdateView, self).dispatch(*args, **kwargs)
 
 class CommentDeleteView(DeleteView):
     model = Comment
     success_url = reverse_lazy('golf_app:comment_history')
 
+    @method_decorator(login_required(login_url='golf_app:login'))
+    def dispatch(self, *args, **kwargs):
+        return super(CommentDeleteView, self).dispatch(*args, **kwargs)
 
 class CommentCreateView(CreateView):
     model = Comment
-    fields = ['player', 'course_name', 'comment', 'course_rating']
+    fields = ['course_name', 'comment', 'course_rating']
     template = "comment_form.html"
     success_url = reverse_lazy('golf_app:comment_history')
 
+    def form_valid(self, form):
+        golfer = Golfer.objects.get(player=self.request.user)
+        form.instance.player = golfer
+        return super().form_valid(form)
+
+    @method_decorator(login_required(login_url='golf_app:login'))
+    def dispatch(self, *args, **kwargs):
+        return super(CommentCreateView, self).dispatch(*args, **kwargs)
