@@ -14,7 +14,6 @@
 <a href="{% url 'golf_app:comment_history' %}">Comments</a>
 </div>
 <body>
-
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}

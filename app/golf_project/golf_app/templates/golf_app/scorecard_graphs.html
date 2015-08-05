@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{% block content %}
+<div align="center">
+<a href="{% url 'golf_app:home' %}">Home</a>
+<a href="{% url 'golf_app:comment_history' %}">Course Comment</a>
+<a href="{% url 'golf_app:scorecard_history' %}">Your Scorecards</a>
+</div>
+
+<img src="{{ graph_one }}"/>
+<img src="{{ graph_two }}"/>
+<img src="{{ graph_three }}"/>
+
+{% endblock %}
+</body>
+</html>

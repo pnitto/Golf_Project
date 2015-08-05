@@ -9,23 +9,15 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView, UpdateView, CreateView, DetailView, DeleteView, TemplateView
 from rest_framework import serializers
 from rest_framework import generics
-from golf_app.converter import scatter_to_base64
+from golf_app.converter import scatter_to_base64, scatter_to_base641, scatter_to_base642
 from .models import Hole, Scorecard, Comment, Golfer
 from .forms import UserForm, GolferForm
 import pandas as pd
-
-
-
-
-def graph(request):
-    df = pd.read_sql_query('player_score', index_col='hole_number',con=engine)
-    print(df)
-    return
+import seaborn
 
 
 class IndexView(TemplateView):
     template_name = "golf_app/index.html"
-
 
 
 def user_registration(request):
@@ -50,10 +42,22 @@ def user_registration(request):
         golfer_form = GolferForm()
     return render_to_response('registration/create_user.html',{'user_form': user_form, 'golfer_form': golfer_form, 'registered': registered} , context)
 
-def graph_view_matplot_lib(request):
-    graph_one = scatter_to_base64(([1, 2, 3, 4], [10, 1, 5, 3]))
-    graph_two = scatter_to_base64(([1, 2, 3, 4], [1, 1, 1, 5]))
-    return render_to_response("base.html", {"graph_one": graph_one, "graph_two": graph_two})
+
+def bar_graph_view_scorecard_total(request):
+    golfer = Golfer.objects.get(player=request.user)
+    graph_one = scatter_to_base64((range(len((golfer.scores_for_scorecards))), (golfer.scores_for_scorecards)))
+    return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one})
+
+def scatter_plot_view_gir(request):
+    golfer = Golfer.objects.get(player=request.user)
+    graph_two = scatter_to_base641((range(len((golfer.gir_for_scorecards))), (golfer.gir_for_scorecards)))
+    return render_to_response('golf_app/scorecard_graphs.html', {'graph_two':graph_two})
+
+def scatter_plot_view_fir(request):
+    golfer = Golfer.objects.get(player=request.user)
+    graph_three = scatter_to_base642((range(len((golfer.fir_for_scorecards))), (golfer.fir_for_scorecards)))
+    return render_to_response('golf_app/scorecard_graphs.html', {'graph_three':graph_three})
+
 
 def home(request):
     context = {}
@@ -87,6 +91,7 @@ class HoleUpdateView(UpdateView):
     template = "hole_form.html"
     success_url = reverse_lazy("golf_app:scorecard_detail")
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['scorecard_pk'] = self.kwargs.get('pk')
@@ -96,7 +101,7 @@ class HoleUpdateView(UpdateView):
         score_pk = Hole.objects.get(id=self.kwargs['pk']).scorecard.id
         form.instance.scorecard_id = score_pk
         form.instance.scorecard = Hole.objects.get(id=self.kwargs['pk']).scorecard
-        self.success_url = reverse_lazy("golf_app:hole_detail", kwargs={'pk': self.kwargs['pk']})
+        self.success_url = reverse_lazy("golf_app:scorecard_detail", kwargs={'pk': score_pk})
         return super().form_valid(form)
 
     @method_decorator(login_required(login_url='golf_app:login'))
@@ -153,6 +158,9 @@ class ScorecardListView(ListView):
     template = "scorecard_list.html"
     success_url = reverse_lazy("golf_app:scorecard_history")
 
+    def get_queryset(self):
+        return Scorecard.objects.filter(player__player=self.request.user)
+
 
 class ScorecardDetailView(DetailView):
     model = Scorecard
@@ -206,6 +214,9 @@ class CommentUpdateView(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(CommentUpdateView, self).dispatch(*args, **kwargs)
 
+    def get_queryset(self):
+        return Comment.objects.filter(player__player=self.request.user)
+
 class CommentDeleteView(DeleteView):
     model = Comment
     success_url = reverse_lazy('golf_app:comment_history')
@@ -213,6 +224,9 @@ class CommentDeleteView(DeleteView):
     @method_decorator(login_required(login_url='golf_app:login'))
     def dispatch(self, *args, **kwargs):
         return super(CommentDeleteView, self).dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        return Comment.objects.filter(player__player=self.request.user)
 
 class CommentCreateView(CreateView):
     model = Comment
@@ -224,6 +238,9 @@ class CommentCreateView(CreateView):
         golfer = Golfer.objects.get(player=self.request.user)
         form.instance.player = golfer
         return super().form_valid(form)
+
+    def get_queryset(self):
+        return Comment.objects.filter(player__player=self.request.user)
 
     @method_decorator(login_required(login_url='golf_app:login'))
     def dispatch(self, *args, **kwargs):

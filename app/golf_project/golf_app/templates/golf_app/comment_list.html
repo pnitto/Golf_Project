@@ -18,19 +18,24 @@
     {% for comment in object_list %}
     <div>
         <ul>
-        <strong>Course Name: {{ comment.course_name }}</strong>
+            <strong>Course Name: {{ comment.course_name }}</strong>
        <li>Course Comment: {{ comment.comment }}</li>
        <li>Course Rating: {{ comment.course_rating }}</li>
        <li>Timestamp: {{ comment.timestamp }}</li>
         </ul>
-        <div><form method="get" action="{% url 'golf_app:update_comment' comment.id %}">
-            {% csrf_token %}
+        </div>
+        <div style="float: left; width: 130px">
+            <form id="linked" method="get" action="{% url 'golf_app:update_comment' comment.id %}">
+                {% csrf_token %}
             <button type="submit"><strong>Edit Comment</strong></button>
-        </form>
-        <form method="get" action="{% url 'golf_app:delete_comment' comment.id %}">
-            {% csrf_token %}
+            </form>
+        </div><div style="float: left; width: 130px">
+            <form id="linked" method="get" action="{% url 'golf_app:delete_comment' comment.id %}">
+                {% csrf_token %}
             <button type="submit"><strong>Delete Comment</strong></button>
-        </form></div>
+            </form>
+        </div>
+        </br>
     {% endfor %}
 {% endblock %}
 

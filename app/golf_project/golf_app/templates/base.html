@@ -12,7 +12,7 @@
 <body>
     <div align="center">
         <a href="{% url 'golf_app:home' %}">Home</a>
-        <a href="{% url 'golf_app:scorecard_history' %}">Your Scorecards</a>
+        <a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a>
         <a href="{% url 'golf_app:comment_history' %}">Course Comment</a>
     </div>
 <h1 align="center"> Welcome {{ user.username }}!</h1>
@@ -47,6 +47,7 @@
     <td>0.0 </td>
 </tr>
 </table>
+Course Names {{ user.golfer.scorecard_names }}
 </body>
 {% endblock %}
 </html>

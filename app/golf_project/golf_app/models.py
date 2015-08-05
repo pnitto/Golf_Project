@@ -18,6 +18,32 @@ class Golfer(models.Model):
         return "{}".format(self.name)
 
     @property
+    def scorecard_names(self):
+        names = self.scorecard_set.all().values_list('course_name')
+        return [str(i[0]) for i in names]
+
+    @property
+    def scores_for_scorecards(self):
+        value = []
+        for x in self.scorecard_set.all():
+            value.append(x.hole_score)
+        return value
+
+    @property
+    def gir_for_scorecards(self):
+        value = []
+        for x in self.scorecard_set.all():
+            value.append(x.gir_percentage)
+        return value
+
+    @property
+    def fir_for_scorecards(self):
+        value = []
+        for x in self.scorecard_set.all():
+            value.append(x.fir_percentage)
+        return value
+
+    @property
     def average_score(self):
         if self.scorecard_set.all().count() == 0:
             return 0
@@ -47,7 +73,6 @@ class Golfer(models.Model):
                 average.append(fir.fir_percentage)
             return round(sum(average) / len(average), 0)
 
-
 class ScorecardManager(models.Manager):
 
     def get_best_scorecard(self, player):
@@ -66,7 +91,6 @@ class Scorecard(models.Model):
 
     class Meta:
         ordering = ['-timestamp']
-
 
     def __str__(self):
         return "{} - {}".format(self.course_name, self.timestamp)
@@ -96,7 +120,6 @@ class Scorecard(models.Model):
     @property
     def over_under_par(self):
         return sum(self.hole_set.all().exclude(player_score=None).values_list('player_score', flat=True)) - sum(self.hole_set.all().exclude(par_type=None).values_list('par_type', flat=True))
-
 
 @receiver(post_save, sender=Scorecard, dispatch_uid="18_holes.post_save")
 def instant_scorecard_creation(sender, instance, created, **kwargs):

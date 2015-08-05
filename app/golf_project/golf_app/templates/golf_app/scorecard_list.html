@@ -9,10 +9,11 @@
 <div align="center">
 <a href="{% url 'golf_app:home' %}">Home</a>
 <a href="{% url 'golf_app:comment_history' %}">Course Comment</a>
+<a href="{% url 'golf_app:graph' %}">Scorecard Graphs</a>
 </div>
 </br>
 
-<h1>Scorecard History</h1>
+<h1>Scorecards</h1>
 <div><form method="post" action="{% url 'golf_app:create_scorecard' %}">
             {% csrf_token %}
             <button type="submit"><strong>Add Scorecard</strong></button>
