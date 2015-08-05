@@ -12,3 +12,19 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+table {
+    background-color : green;
+    border : 2px solid yellow;
+}
+td {
+    color: yellow;
+    vertical-align: bottom;
+}
+table td {
+    border-left: yellow;
+    border-right: yellow;
+}
+body {
+    background-color: gray;
+}

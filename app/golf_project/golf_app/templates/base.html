@@ -1,54 +1,81 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ STATIC_URL }}style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title></title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'css/materialize.css'%}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+
 </head>
 {% block head %}
 {% endblock %}
-{% block body %}
+
 <body>
-    <div align="center">
-        <a href="{% url 'golf_app:home' %}">Home</a>
-        <a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a>
-        <a href="{% url 'golf_app:comment_history' %}">Course Comment</a>
-    </div>
+
+  <nav class="#00c853 green accent-4" role="navigation">
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'golf_app:home' %}">Home</a></li>
+      <li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li>
+      <li><a href="{% url 'golf_app:comment_history' %}">Course Comment</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="{% url 'golf_app:home' %}">Home</a></li>
+      <li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li>
+      <li><a href="{% url 'golf_app:graph' %}">Scorecard Graphs</a></li>
+      <li><a href="{% url 'golf_app:comment_history' %}">Course Comment</a></li>
+
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </nav>
+{% block body %}
 <h1 align="center"> Welcome {{ user.username }}!</h1>
 <div align="center">
     {% if user.id %}
-        <a href="{% url 'golf_app:logout' %}">Logout</a>
+        <a href="{% url 'golf_app:logout' %}" class="waves-effect waves-light btn">Logout</a>
+        <p></p>
+        <p></p>
     {% else %}
-        <a href="{% url 'golf_app:login' %}">Login</a>
-        <a href="{% url 'golf_app:user_registration' %}">Sign up</a>
+        <a href="{% url 'golf_app:login' %}" class="waves-effect waves-light btn">Login</a>
+        <a href="{% url 'golf_app:user_registration' %}" class="waves-effect waves-light btn">Sign up</a>
     {% endif %}
 </div>
-<div>
-{% block content %}
+{% endblock %}
 
+<div class="container">
+{% block content %}
 {% endblock %}
 </div>
-<table align="center" border="1">
-<tr>
-    <td>Average Round Score:</td>
-    <td>{{ user.golfer.average_score }}</td>
-</tr>
-<tr>
-    <td>Average FIR %: </td>
-    <td>{{ user.golfer.average_fir }}</td>
-</tr>
-<tr>
-    <td>Average GIR %: </td>
-    <td>{{ user.golfer.average_gir }}</td>
-</tr>
-<tr>
-    <td>Best Round:</td>
-    <td>0.0 </td>
-</tr>
+
+<div class="container">
+
+<table align="center" border="1" class="bordered">
+    <tr>
+        <td>Average Score:</td>
+        <td>Average FIR %:</td>
+        <td>Average GIR %:</td>
+        <td>Best Score: </td>
+    </tr>
+    <tr>
+    <td align="center">{{ user.golfer.average_score }}</td>
+    <td align="center">{{ user.golfer.average_fir }}</td>
+    <td align="center">{{ user.golfer.average_gir }}</td>
+    <td align="center">0.0 </td>
+    </tr>
 </table>
-Course Names {{ user.golfer.scorecard_names }}
+    </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+
 </body>
-{% endblock %}
+
+
 </html>
 

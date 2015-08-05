@@ -42,22 +42,13 @@ def user_registration(request):
         golfer_form = GolferForm()
     return render_to_response('registration/create_user.html',{'user_form': user_form, 'golfer_form': golfer_form, 'registered': registered} , context)
 
-
-def bar_graph_view_scorecard_total(request):
+login_required(login_url='golf_app:login')
+def graphs(request):
     golfer = Golfer.objects.get(player=request.user)
-    graph_one = scatter_to_base64((range(len((golfer.scores_for_scorecards))), (golfer.scores_for_scorecards)))
-    return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one})
-
-def scatter_plot_view_gir(request):
-    golfer = Golfer.objects.get(player=request.user)
-    graph_two = scatter_to_base641((range(len((golfer.gir_for_scorecards))), (golfer.gir_for_scorecards)))
-    return render_to_response('golf_app/scorecard_graphs.html', {'graph_two':graph_two})
-
-def scatter_plot_view_fir(request):
-    golfer = Golfer.objects.get(player=request.user)
-    graph_three = scatter_to_base642((range(len((golfer.fir_for_scorecards))), (golfer.fir_for_scorecards)))
-    return render_to_response('golf_app/scorecard_graphs.html', {'graph_three':graph_three})
-
+    graph_one = scatter_to_base64((range(len((golfer.scores_for_scorecards))), (golfer.scores_for_scorecards)), request.user)
+    graph_two = scatter_to_base641((range(len((golfer.gir_for_scorecards))), (golfer.gir_for_scorecards)), request.user)
+    graph_three = scatter_to_base642((range(len((golfer.fir_for_scorecards))), (golfer.fir_for_scorecards)), request.user)
+    return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one,"graph_two": graph_two, "graph_three": graph_three})
 
 def home(request):
     context = {}
