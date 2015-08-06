@@ -10,14 +10,23 @@
 
 <body>
 {% block body %}
-<a href="{% url 'golf_app:scorecard_detail' hole.scorecard.id  %}">{{ hole.scorecard.course_name }} Scorecard</a>
-</br>
-    <div>
-        Hole Number: {{ hole.hole_number }}
+    <div class="scorecard-button-hole" align="center">
+<a href="{% url 'golf_app:scorecard_detail' hole.scorecard.id  %}" class="waves-effect waves-light btn">{{ hole.scorecard.course_name }} Scorecard</a>
+</div>
+<br/>
+    <div class="hole-detail">
+        <h2 align="center">Hole Number: {{ hole.hole_number }}</h2>
     </div>
-<form method="post">
+<form method="post" id="edit-hole">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% for field in form %}<p>
+        {% if field.id_for_label == "id_green_in_regulation" or field.id_for_label == "id_fairway_in_regulation" %}
+       <div class="checkbox-fix"><label>{{ field.label }}</label>{{ field }}<label for="{{ field.id_for_label }}"></label></div>
+        {% else %}
+            <label>{{ field.label }}</label>{{ field }}
+        {%  endif %}
+        </p>
+    {% endfor %}
     <button type="submit" value="update">Submit</button>
 </form>
 {% endblock %}

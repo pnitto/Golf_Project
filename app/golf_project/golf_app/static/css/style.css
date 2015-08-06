@@ -9,21 +9,26 @@
 .icon-block {
   padding: 0 15px;
 }
+
 .icon-block .material-icons {
 	font-size: inherit;
 }
 
+
 table.bordered {
-    background-color : green;
-    border : 2px solid black;
+    background-color: green;
+    border: 2px solid black;
 }
 
 table td {
     color: yellow;
     vertical-align: bottom;
     letter-spacing: 2px;
+    border: solid black
 }
-
+table th {
+    border: solid black;
+}
 body {
     background-color: gray;
 }
@@ -47,4 +52,27 @@ a.scorecard-list {
 button.add-scorecard {
     background-color: blue;
     color: white;
+}
+
+.scorecard-button-hole {
+    padding: 20px;
+}
+
+label {
+    color: yellow;
+    font-size: 1rem;
+}
+
+.hole-detail {
+    color: white;
+}
+
+.checkbox-fix label{
+    top: 6px;
+    left: 11px;
+}
+
+.start-round {
+    padding: 20px;
+    color: black;
 }

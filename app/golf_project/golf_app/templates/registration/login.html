@@ -6,7 +6,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Login</button>
-        <input type="hidden" name="next" value='{% url "golf_app:home" %}' />
+        <input type="hidden" name="next" value='{% url "golf_app:home" %}'/>
     </form>
 
 {% endblock %}
