@@ -21,6 +21,7 @@ table.bordered {
 table td {
     color: yellow;
     vertical-align: bottom;
+    letter-spacing: 2px;
 }
 
 body {
@@ -31,7 +32,19 @@ ul.side-nav {
     background-color: #29b6f6;
 }
 
-.delete {
-    color: red;
+button.delete {
+    color: white;
+    background-color: red;
+}
 
+a.scorecard-list {
+    color: greenyellow;
+}
+
+.login-register {
+    padding: 20px;
+}
+button.add-scorecard {
+    background-color: blue;
+    color: white;
 }

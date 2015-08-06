@@ -32,26 +32,23 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>
   </nav>
+  <div class="container">
 {% block body %}
 <h1 align="center"> Welcome {{ user.username }}!</h1>
-<div align="center">
+<div align="center" class="login-register">
     {% if user.id %}
         <a href="{% url 'golf_app:logout' %}" class="waves-effect waves-light btn">Logout</a>
-        <p></p>
-        <p></p>
     {% else %}
         <a href="{% url 'golf_app:login' %}" class="waves-effect waves-light btn">Login</a>
         <a href="{% url 'golf_app:user_registration' %}" class="waves-effect waves-light btn">Sign up</a>
     {% endif %}
 </div>
 {% endblock %}
-
-<div class="container">
+</div>
+  <div class="container">
 {% block content %}
 {% endblock %}
 </div>
-
-<div class="container">
 <table align="center" border="1" class="bordered">
     <tr>
         <td>Average Score:</td>
@@ -66,16 +63,13 @@
     <td>0.0 </td>
     </tr>
 </table>
-    </div>
   <p></p>
 <div align="center">
 <a href="{% url 'golf_app:scorecard_history' %}" class="waves-effect waves-light btn">Start Round</a>
 </div>
-
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="{% static 'js/materialize.js' %}"></script>
   <script src="{% static 'js/init.js' %}"></script>
-
 </body>
 </html>
 

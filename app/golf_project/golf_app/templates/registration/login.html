@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div>
-<a href="{% url 'golf_app:home' %}">Home</a>
-</div>
+{% block body %}
     <p><strong>You must login to access the information on this site.</strong></p>
     <form method="post">
         {% csrf_token %}

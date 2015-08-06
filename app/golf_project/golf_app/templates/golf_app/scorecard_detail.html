@@ -8,11 +8,6 @@
 </head>
 <body>
 {% block body %}
-<div align="center">
-<a href="{% url 'golf_app:home' %}">Home</a>
-<a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a>
-<a href="{% url 'golf_app:comment_history' %}">Course Comment</a>
-</div>
    <h3 align="center">{{ scorecard.course_name }}</h3>
     <div align="center"><strong>{{ user.username }}'s current score:</strong> {{ scorecard.hole_score }}</div>
     <div align="center"><strong>GIR %:</strong> {{ scorecard.gir_percentage }}</div>
@@ -20,7 +15,7 @@
     <div align="center"><strong>Over/Under Par(-) Total :</strong> {{ scorecard.over_under_par }}</div>
 </br>
     <div>
-      <table border="1" align="center" class="bordered">
+      <table border="1" align="center" class="bordered" id="scorecard-detail">
         <thead>
           <tr>
               <th data-field="id">Hole Number</th>
@@ -31,9 +26,9 @@
         <tbody>
         {% for hole in object.hole_set.all %}
           <tr>
-            <td align="center"><a href="{% url 'golf_app:hole_detail' hole.id %}">{{ hole.hole_number }}</a></td>
-              <td align="center">{{ hole.player_score }}</td>
-            <td align="center">{{ hole.hole_over_under_par }}</td>
+            <td><a href="{% url 'golf_app:hole_detail' hole.id %}">{{ hole.hole_number }}</a></td>
+              <td>{{ hole.player_score }}</td>
+            <td>{{ hole.hole_over_under_par }}</td>
           </tr>
         {% endfor %}
         </tbody>

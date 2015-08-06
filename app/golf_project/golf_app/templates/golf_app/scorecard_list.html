@@ -1,25 +1,33 @@
 {%  extends 'base.html' %}
+<!DOCTYPE html>
 <html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
 <body>
 {% block body %}
 </br>
 
-<h1>Scorecards</h1>
-<div><form method="post" action="{% url 'golf_app:create_scorecard' %}">
+<h1 align="center">Scorecards</h1>
+<div align="center">
+    <form method="post" action="{% url 'golf_app:create_scorecard' %}">
             {% csrf_token %}
-            <button type="submit"><strong>Add Scorecard</strong></button>
-        </form></div>
+            <button type="submit" class="add-scorecard"><strong>Add Scorecard</strong></button>
+        </form>
+</div>
+    <div align="center">
 {% for scorecard in object_list %}
     <ul>
-    <li><strong><a href="{% url 'golf_app:scorecard_detail' scorecard.id %}">{{ scorecard.course_name }}</a> on {{ scorecard.timestamp }} </strong></li>
+    <li><h4><strong><a href="{% url 'golf_app:scorecard_detail' scorecard.id %}" class="scorecard-list">{{ scorecard.course_name }}</a> on {{ scorecard.timestamp }}</strong></h4></li>
         </ul>
-    <div class="delete">
         <form method="get" action="{% url 'golf_app:delete_scorecard' scorecard.id %}">
             {% csrf_token %}
-            <button type="submit">Delete Scorecard</button>
+            <button type="submit" class="delete">Delete Scorecard</button>
         </form>
-    </div>
 {% endfor %}
+    </div>
 {% endblock %}
 </body>
 </html>
