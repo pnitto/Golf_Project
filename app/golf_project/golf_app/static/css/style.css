@@ -13,18 +13,25 @@
 	font-size: inherit;
 }
 
-table {
+table.bordered {
     background-color : green;
-    border : 2px solid yellow;
+    border : 2px solid black;
 }
-td {
+
+table td {
     color: yellow;
     vertical-align: bottom;
 }
-table td {
-    border-left: yellow;
-    border-right: yellow;
-}
+
 body {
     background-color: gray;
+}
+
+ul.side-nav {
+    background-color: #29b6f6;
+}
+
+.delete {
+    color: red;
+
 }

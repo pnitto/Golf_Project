@@ -16,22 +16,21 @@
 {% endblock %}
 
 <body>
-
   <nav class="#00c853 green accent-4" role="navigation">
       <ul class="right hide-on-med-and-down">
         <li><a href="{% url 'golf_app:home' %}">Home</a></li>
       <li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li>
       <li><a href="{% url 'golf_app:comment_history' %}">Course Comment</a></li>
       </ul>
-
+      <div id="side-nav-bar">
       <ul id="nav-mobile" class="side-nav">
         <li><a href="{% url 'golf_app:home' %}">Home</a></li>
       <li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li>
       <li><a href="{% url 'golf_app:graph' %}">Scorecard Graphs</a></li>
       <li><a href="{% url 'golf_app:comment_history' %}">Course Comment</a></li>
-
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
   </nav>
 {% block body %}
 <h1 align="center"> Welcome {{ user.username }}!</h1>
@@ -53,7 +52,6 @@
 </div>
 
 <div class="container">
-
 <table align="center" border="1" class="bordered">
     <tr>
         <td>Average Score:</td>
@@ -62,20 +60,22 @@
         <td>Best Score: </td>
     </tr>
     <tr>
-    <td align="center">{{ user.golfer.average_score }}</td>
-    <td align="center">{{ user.golfer.average_fir }}</td>
-    <td align="center">{{ user.golfer.average_gir }}</td>
-    <td align="center">0.0 </td>
+    <td>{{ user.golfer.average_score }}</td>
+    <td>{{ user.golfer.average_fir }}</td>
+    <td>{{ user.golfer.average_gir }}</td>
+    <td>0.0 </td>
     </tr>
 </table>
     </div>
+  <p></p>
+<div align="center">
+<a href="{% url 'golf_app:scorecard_history' %}" class="waves-effect waves-light btn">Start Round</a>
+</div>
 
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="{% static 'js/materialize.js' %}"></script>
   <script src="{% static 'js/init.js' %}"></script>
 
 </body>
-
-
 </html>
 
