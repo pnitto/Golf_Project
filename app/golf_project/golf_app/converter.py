@@ -10,6 +10,7 @@ def scatter_to_base64(data, user):
     plt.xlabel('Course Names')
     plt.title('Bar Graph of Golfer Score Totals per Scorecard')
     plt.xticks(data[0], user.golfer.scorecard_names)
+    plt.ylim(0,)
     image_file = io.BytesIO()
     plt.savefig(image_file, format="png")
     image_file.seek(0)

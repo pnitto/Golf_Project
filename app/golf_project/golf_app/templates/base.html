@@ -16,11 +16,18 @@
 {% endblock %}
 
 <body>
-  <nav class="#00c853 green accent-4" role="navigation">
+  <nav class="top-nav" role="navigation">
       <ul class="right hide-on-med-and-down">
-        <li><a href="{% url 'golf_app:home' %}">Home</a></li>
-      <li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li>
-      <li><a href="{% url 'golf_app:comment_history' %}">Course Comment</a></li>
+      <strong><li><a href="{% url 'golf_app:home' %}">Home</a></li></strong>
+      <strong><li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li></strong>
+      <strong><li><a href="{% url 'golf_app:comment_history' %}">Course Comment</a></li></strong>
+      <strong><li><a href="{% url 'golf_app:graph' %}">Scorecard Graphs</a></li></strong>
+          {% if user.id %}
+          <strong><li><a href="{% url 'golf_app:logout' %}">Logout</a></li></strong>
+            {% else %}
+            <strong><li><a href="{% url 'golf_app:login' %}">Login</a></li></strong>
+             <strong><li><a href="{% url 'golf_app:user_registration' %}">Sign up</a></li></strong>
+            {% endif %}
       </ul>
       <div id="side-nav-bar">
       <ul id="nav-mobile" class="side-nav">
@@ -28,6 +35,12 @@
       <li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li>
       <li><a href="{% url 'golf_app:graph' %}">Scorecard Graphs</a></li>
       <li><a href="{% url 'golf_app:comment_history' %}">Course Comment</a></li>
+      {% if user.id %}
+          <strong><li><a href="{% url 'golf_app:logout' %}">Logout</a></li></strong>
+            {% else %}
+            <strong><li><a href="{% url 'golf_app:login' %}">Login</a></li></strong>
+             <strong><li><a href="{% url 'golf_app:user_registration' %}">Sign up</a></li></strong>
+            {% endif %}
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>

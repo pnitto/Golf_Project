@@ -21,7 +21,10 @@
     {% csrf_token %}
     {% for field in form %}<p>
         {% if field.id_for_label == "id_green_in_regulation" or field.id_for_label == "id_fairway_in_regulation" %}
-       <div class="checkbox-fix"><label>{{ field.label }}</label>{{ field }}<label for="{{ field.id_for_label }}"></label></div>
+       <div class="checkbox-fix">
+           <label>{{ field.label }}</label>{{ field }}
+           <label for="{{ field.id_for_label }}"></label>
+       </div>
         {% else %}
             <label>{{ field.label }}</label>{{ field }}
         {%  endif %}

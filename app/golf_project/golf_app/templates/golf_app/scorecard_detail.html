@@ -1,4 +1,4 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
 
 <html>
 <head lang="en">
@@ -10,11 +10,13 @@
 <body>
 <div class="container">
 {% block body %}
-   <h3 align="center">{{ scorecard.course_name }}</h3>
-    <div align="center"><strong>{{ user.username }}'s current score:</strong> {{ scorecard.hole_score }}</div>
-    <div align="center"><strong>GIR %:</strong> {{ scorecard.gir_percentage }}</div>
-    <div align="center"><strong>FIR %:</strong> {{ scorecard.fir_percentage }}</div>
-    <div align="center"><strong>Over/Under Par(-) Total :</strong> {{ scorecard.over_under_par }}</div>
+    <div class="player-info">
+     <div align="center"><h3>{{ scorecard.course_name }}</h3></div>
+     <div align="center"><strong>{{ user.username }}'s current score:</strong> {{ scorecard.hole_score }}</div>
+     <div align="center"><strong>GIR %:</strong> {{ scorecard.gir_percentage }}</div>
+     <div align="center"><strong>FIR %:</strong> {{ scorecard.fir_percentage }}</div>
+     <div align="center"><strong>Over/Under Par(-) Total :</strong> {{ scorecard.over_under_par }}</div>
+    </div>
 </br>
     <div class="container white-background">
       <table border="1" align="center" class="bordered" id="scorecard-detail">

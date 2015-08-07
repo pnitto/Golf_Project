@@ -9,14 +9,13 @@
 
 {% block body %}
 <body>
-
-<form method="POST">
+<div class="container">
+<form method="POST" class="scorecard-name">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Add Scorecard</button>
-
 </form>
-
+</div>
 {% endblock %}
 
 </body>

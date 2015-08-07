@@ -75,7 +75,6 @@ class HoleListView(ListView):
     template = "scorecard_detail.html"
     success_url = reverse_lazy("golf_app:scorecard_detail")
 
-
 class HoleUpdateView(UpdateView):
     model = Hole
     fields = ['player_score','par_type','green_in_regulation', 'fairway_in_regulation']
@@ -152,6 +151,9 @@ class ScorecardListView(ListView):
     def get_queryset(self):
         return Scorecard.objects.filter(player__player=self.request.user)
 
+    @method_decorator(login_required(login_url='golf_app:login'))
+    def dispatch(self, *args, **kwargs):
+        return super(ScorecardListView, self).dispatch(*args, **kwargs)
 
 class ScorecardDetailView(DetailView):
     model = Scorecard

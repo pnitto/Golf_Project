@@ -11,7 +11,7 @@
 {% block body %}
 <body>
 </br>
-<p>Are you sure you want to delete the {{ scorecard.course_name }} scorecard?</p>
+<p class="delete-scorecard-field">Are you sure you want to delete the {{ scorecard.course_name }} scorecard?</p>
 <form method="POST">
     {% csrf_token %}
     {{ form }}

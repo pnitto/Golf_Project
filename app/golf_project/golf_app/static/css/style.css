@@ -16,8 +16,8 @@
 
 
 table.bordered {
-    background-color: green;
-    border: 2px solid black;
+    background-color: grey;
+    border: 2px solid white;
 }
 
 table td {
@@ -30,11 +30,15 @@ table th {
     border: solid black;
 }
 body {
-    background-color: gray;
+    background-color: black;
 }
 
 ul.side-nav {
-    background-color: #29b6f6;
+    background-color: lime;
+    font-size: 30px;
+}
+nav.top-nav {
+    background-color: lime;
 }
 
 button.delete {
@@ -56,10 +60,11 @@ button.add-scorecard {
 
 .scorecard-button-hole {
     padding: 20px;
+
 }
 
 label {
-    color: yellow;
+    color: white;
     font-size: 1rem;
 }
 
@@ -72,7 +77,35 @@ label {
     left: 11px;
 }
 
-.start-round {
-    padding: 20px;
+.player-info {
+    color: white;
+    font-size: x-large;
+}
+
+.welcome-font {
+    color: blue;
+    padding-top: 20px;
+}
+
+.container {
+    background-color: white;
+}
+
+.scorecard-list-title {
+    color: white;
+}
+button.begin-round {
+    background-color: lime;
+}
+
+p.delete-scorecard-field {
+    color: white;
+}
+
+form.delete-scorecared-button {
+    color: black;
+}
+
+form.login {
     color: black;
 }
