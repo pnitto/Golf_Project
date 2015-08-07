@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from .views import home, HoleListView, HoleUpdateView, user_registration, HoleCreateView, HoleDetailView, \
     ScorecardListView, ScorecardCreateView, CommentListView, CommentUpdateView, CommentDeleteView, CommentCreateView, \
     ScorecardDetailView, ScorecardDeleteView, HoleDeleteView, IndexView, graphs
+
+
 from django.contrib.auth.views import login, logout
 
 

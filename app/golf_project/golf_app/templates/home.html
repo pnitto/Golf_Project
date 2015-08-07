@@ -29,7 +29,7 @@
              <strong><li><a href="{% url 'golf_app:user_registration' %}">Sign up</a></li></strong>
             {% endif %}
       </ul>
-      <div id="side-nav-bar">
+      <div class="side-nav-bar">
           <ul id="nav-mobile" class="side-nav">
             <li><a href="{% url 'golf_app:home' %}">Home</a></li>
           <li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li>
@@ -45,39 +45,33 @@
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div>
   </nav>
-  <div class="container white-background">
-  <div class="container">
     {% block body %}
     <h1 align="center" class="welcome-font"> Welcome {{ user.username }}!</h1>
     {% endblock %}
+  <div align="center">
+    <strong><button class="btn begin-round"><a class="black-text" href="{% url 'golf_app:scorecard_history' %}">Add Scorecard to Begin&nbsp;Round</a></button></strong>
   </div>
-  <div class="container">
     {% block content %}
     {% endblock %}
-  </div>
   <div class="container">
     <table align="center" class="bordered">
         <tr>
             <td>Average Score:</td>
-            <td align="center">{{ user.golfer.average_score }}</td>
+            <td>{{ user.golfer.average_score }}</td>
         </tr>
         <tr>
             <td>Average GIR%: </td>
-            <td align="center">{{ user.golfer.average_gir }}</td>
+            <td>{{ user.golfer.average_gir }}</td>
         </tr>
         <tr>
             <td>Average FIR %:</td>
-            <td align="center">{{ user.golfer.average_fir }}</td>
+            <td>{{ user.golfer.average_fir }}</td>
         </tr>
         <tr>
             <td>Best Score: </td>
-            <td align="center">0.0 </td>
+            <td>0.0 </td>
         </tr>
     </table>
-  </div>
-  <p></p>
-  <div class="container" align="center">
-    <strong><button class="begin-round"><a href="{% url 'golf_app:scorecard_history' %}">Add Scorecard to Begin Round</a></button></strong>
   </div>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="{% static 'js/materialize.js' %}"></script>

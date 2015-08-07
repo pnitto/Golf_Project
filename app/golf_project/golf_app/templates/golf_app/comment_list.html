@@ -6,7 +6,7 @@
 </head>
 <body>
 {% block body %}
-<h1>Comments</h1>
+<h1 class="Comment-title">Comments</h1>
 <div><form method="post" action="{% url 'golf_app:create_comment' %}">
             {% csrf_token %}
             <button type="submit"><strong>Add Comment</strong></button>

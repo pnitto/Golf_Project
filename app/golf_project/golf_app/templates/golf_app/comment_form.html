@@ -7,22 +7,15 @@
     <title></title>
 
 </head>
-
-{% block body %}
-<div align="center">
-<a href="{%  url 'golf_app:home' %}">Home</a>
-<a href="{% url 'golf_app:comment_history' %}">Comments</a>
-</div>
-<body>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-
-</form>
-
-{% endblock %}
-
-</body>
-
+    <body>
+        {% block body %}
+            <div class="container">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        {% endblock %}
+    </body>
 </html>

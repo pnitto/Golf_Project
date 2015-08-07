@@ -10,13 +10,13 @@
 
 {% block body %}
 <div align="center">
-<a href="{%  url 'golf_app:home' %}">Home</a>
-<a href="{%  url 'golf_app:scorecard_history' %}">Scorecards</a>
 <a href="{%  url 'golf_app:scorecard_detail' hole.scorecard.id %}"> {{ hole.scorecard.course_name }} Scorecard</a>
 </div>
-    <h1>Hole {{ hole.hole_number }} Detail</h1><div align="left"><form method="get" action="{% url 'golf_app:update_hole' hole.id %}"><button type="submit"><strong>Edit Hole</strong></button>
-            {% csrf_token %}
-        </form></div>
+    <div class="container">
+        <h2>Hole {{ hole.hole_number }} Detail</h2>
+        <div align="left"><form method="get" action="{% url 'golf_app:update_hole' hole.id %}"><button type="submit"><strong>Edit Hole</strong></button>
+                {% csrf_token %}
+            </form></div>
 
     <a href="{% url 'golf_app:scorecard_history' %}">{{ scorecard.course_name }}</a>
         <div>
@@ -29,6 +29,7 @@
         <li><strong>Timestamp:</strong> {{ hole.timestamp }}</li>
             </ul>
         </div>
+    </div>
     {% if hole.previous_hole %}
     <a href="{% url 'golf_app:hole_detail' hole.previous_hole.id %}">Previous </a>
     {% else %}
