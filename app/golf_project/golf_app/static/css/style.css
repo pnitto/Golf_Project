@@ -14,15 +14,6 @@
 	font-size: inherit;
 }
 
-table.bordered {
-    background-color: ghostwhite;
-    border: 2px white;
-    width: 60%;
-    height: 70%;
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
 table td {
     color: black;
     vertical-align: bottom;
@@ -42,10 +33,6 @@ nav.top-nav {
     color: white;
 }
 
-a.scorecard-list {
-    color: #388E3C;
-}
-
 .scorecard-list {
     color: #212121;
     padding-top: 40px;
@@ -54,6 +41,7 @@ a.scorecard-list {
 button.delete {
     color: white;
     background-color: red;
+    width: 35px;
 }
 
 button.add-scorecard {
@@ -75,7 +63,7 @@ label {
 }
 
 .hole-detail {
-    color: white;
+    color: black;
 }
 
 .checkbox-fix label{
@@ -84,7 +72,7 @@ label {
 }
 
 .player-info {
-    color: white;
+    color: black;
     font-size: x-large;
 }
 
@@ -99,8 +87,6 @@ label {
     right-padding: 12px;
     padding: 12px;
 }
-
-
 
 .begin-round {
     background-color: #607D8B;
@@ -125,6 +111,13 @@ form.login {
 h1.Comment-title {
     color: white;
 }
-.container {
-    color: gray;
+
+table.hoverable {
+    background-color: #C8E6C9;
+}
+.add-score-btn {
+    margin: 20px;
+}
+.hole-detail {
+    margin: 20px;
 }

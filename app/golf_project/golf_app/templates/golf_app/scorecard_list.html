@@ -24,30 +24,35 @@
 <div class="scorecard-list">
     <h1 align="center">Scorecards</h1>
 
-<div align="center">
+<div align="center" class="add-score-btn">
     <form method="post" action="{% url 'golf_app:create_scorecard' %}">
             {% csrf_token %}
             <button type="submit" class="add-scorecard"><strong>Add Scorecard</strong></button>
         </form>
 </div>
-    <div align="center">
-{% for scorecard in object_list %}
-    <ul>
-    <li><h4><strong>
-        <a href="{% url 'golf_app:scorecard_detail' scorecard.id %}" class="scorecard-list">
-        <u>{{ scorecard.course_name }}</u></a> on
-        <div class="timestamp-sc"> {{ scorecard.timestamp }}
-        </div>
-        </strong></h4></li>
-
-    </ul>
-        <form method="get" action="{% url 'golf_app:delete_scorecard' scorecard.id %}" class="delete-scorecard-button">
-            {% csrf_token %}
-            <button type="submit" class="delete">Delete Scorecard</button>
-        </form>
-{% endfor %}
-    </div>
-    </div>
+  <div align="center" class="container">
+    <table align="center" class="hoverable">
+            <th><font color="black">Recent Scorecard List</font></th>
+            <th><font color="black">Date/Time</font></th>
+            <th></th>
+                {% for scorecard in object_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'golf_app:scorecard_detail' scorecard.id %}">
+                        <u>{{ scorecard.course_name }}</u></a>
+                    </td>
+                    <td>
+                        <div class="timestamp-sc"> {{ scorecard.timestamp }}</div></td>
+                    <td>
+                        <form method="get" action="{% url 'golf_app:delete_scorecard' scorecard.id %}" class="delete-scorecard-button">
+                            {% csrf_token %}
+                            <button type="submit" class="delete">X</button>
+                        </form>
+                    </td>
+                </tr>
+        {% endfor %}
+    </table>
+  </div>
 {% endblock %}
 </body>
 </html>

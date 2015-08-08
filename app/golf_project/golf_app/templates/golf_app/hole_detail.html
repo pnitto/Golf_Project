@@ -9,37 +9,48 @@
 <body>
 
 {% block body %}
-<div align="center">
-<a href="{%  url 'golf_app:scorecard_detail' hole.scorecard.id %}"> {{ hole.scorecard.course_name }} Scorecard</a>
-</div>
-    <div class="container">
-        <h2>Hole {{ hole.hole_number }} Detail</h2>
-        <div align="left"><form method="get" action="{% url 'golf_app:update_hole' hole.id %}"><button type="submit"><strong>Edit Hole</strong></button>
-                {% csrf_token %}
-            </form></div>
-
+    <div align="center">
+        <button class="container">
+            <a href="{%  url 'golf_app:scorecard_detail' hole.scorecard.id %}"> {{ hole.scorecard.course_name }} Scorecard</a>
+        </button>
+    </div>
+    <div class="hole-detail">
+        <div class="container">
+            <h2>Hole {{ hole.hole_number }} Detail</h2>
+            <div align="left">
+                <form method="get" action="{% url 'golf_app:update_hole' hole.id %}">
+                    <button type="submit">
+                        <strong>Edit Hole</strong>
+                    </button>
+                    {% csrf_token %}
+                </form>
+            </div>
     <a href="{% url 'golf_app:scorecard_history' %}">{{ scorecard.course_name }}</a>
         <div>
             <ul>
-        <li><strong>Hole Number:</strong> {{ hole.hole_number }}</li>
-        <li><strong>Par Type</strong>: {{ hole.par_type }}</li>
-        <li><strong>Player Score:</strong> {{ hole.player_score }}</li>
-        <li><strong>GIR:</strong> {{ hole.gir }}</li>
-        <li><strong>FIR:</strong> {{ hole.fir }}</li>
-        <li><strong>Timestamp:</strong> {{ hole.timestamp }}</li>
+                <li><strong>Hole Number:</strong> {{ hole.hole_number }}</li>
+                <li><strong>Par Type</strong>: {{ hole.par_type }}</li>
+                <li><strong>Player Score:</strong> {{ hole.player_score }}</li>
+                <li><strong>GIR:</strong> {{ hole.gir }}</li>
+                <li><strong>FIR:</strong> {{ hole.fir }}</li>
+                <li><strong>Timestamp:</strong> {{ hole.timestamp }}</li>
             </ul>
         </div>
+    <div class="container">
+        {% if hole.previous_hole %}
+            <a href="{% url 'golf_app:hole_detail' hole.previous_hole.id %}">Previous </a>
+        {% else %}
+            Previous
+        {% endif %}
+            {% if hole.next_hole %}
+                <a href="{% url 'golf_app:hole_detail' hole.next_hole.id %}">Next</a>
+            {% else %}
+                Next
+            {% endif %}
     </div>
-    {% if hole.previous_hole %}
-    <a href="{% url 'golf_app:hole_detail' hole.previous_hole.id %}">Previous </a>
-    {% else %}
-    Previous
-    {% endif %}
-    {% if hole.next_hole %}
-    <a href="{% url 'golf_app:hole_detail' hole.next_hole.id %}">Next</a>
-    {% else %}
-    Next
-    {% endif %}
+        </div>
+    </div>
+
 {% endblock %}
 </body>
 

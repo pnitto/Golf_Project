@@ -18,8 +18,9 @@
      <div align="center"><strong>Over/Under Par(-) Total :</strong> {{ scorecard.over_under_par }}</div>
     </div>
 </br>
-    <div class="container">
-      <table border="1" align="center" class="bordered" id="scorecard-detail">
+    <div class="container" id="sc-detail-tb">
+      <table align="center" class="hoverable">
+
         <thead>
           <tr>
               <th data-field="id">Hole Number</th>
@@ -37,7 +38,6 @@
         {% endfor %}
         </tbody>
       </table>
-    </div>
     </div>
 {% endblock %}
 </body>
