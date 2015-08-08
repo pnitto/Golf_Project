@@ -49,7 +49,7 @@
     <h1 align="center" class="welcome-font"> Welcome {{ user.username }}!</h1>
     {% endblock %}
   <div align="center">
-    <strong><button class="btn begin-round"><a class="black-text" href="{% url 'golf_app:scorecard_history' %}">Add Scorecard to Begin&nbsp;Round</a></button></strong>
+    <button class="waves-effect light green waves-dark btn-large gray begin-round"><a class="black-text" href="{% url 'golf_app:scorecard_history' %}"><strong>Add Scorecard to Begin Round</strong></a></button>
   </div>
     {% block content %}
     {% endblock %}

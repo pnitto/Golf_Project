@@ -17,15 +17,16 @@
 table.bordered {
     background-color: ghostwhite;
     border: 2px white;
+    width: 60%;
+    height: 70%;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 table td {
     color: black;
     vertical-align: bottom;
     letter-spacing: 2px;
-}
-table th {
-    border: solid black;
 }
 body {
     background-color: ghostwhite;
@@ -41,21 +42,27 @@ nav.top-nav {
     color: white;
 }
 
+a.scorecard-list {
+    color: #388E3C;
+}
+
+.scorecard-list {
+    color: #212121;
+    padding-top: 40px;
+}
+
 button.delete {
     color: white;
     background-color: red;
 }
 
-a.scorecard-list {
-    color: greenyellow;
+button.add-scorecard {
+    background-color: blue;
+    color: white;
 }
 
 .login-register {
     padding: 20px;
-}
-button.add-scorecard {
-    background-color: blue;
-    color: white;
 }
 
 .scorecard-button-hole {
@@ -87,14 +94,13 @@ label {
 }
 
 .container {
-    background-color: #C8E6C9;
-    padding: 10px;
-    padding-bottom: 15px;
+    background-color: #B6B6B6;
+    left-padding: 12px;
+    right-padding: 12px;
+    padding: 12px;
 }
 
-.scorecard-list-title {
-    color: #212121;
-}
+
 
 .begin-round {
     background-color: #607D8B;
@@ -113,7 +119,7 @@ form.login {
     color: black;
 }
 .timestamp-sc {
-    color: white;
+    color: black;
 }
 
 h1.Comment-title {

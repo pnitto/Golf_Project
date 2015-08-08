@@ -21,7 +21,9 @@
       </ul>
  </nav>
 {% block body %}
-<div class="scorecard-list-title"><h1 align="center">Scorecards</h1></div>
+<div class="scorecard-list">
+    <h1 align="center">Scorecards</h1>
+
 <div align="center">
     <form method="post" action="{% url 'golf_app:create_scorecard' %}">
             {% csrf_token %}
@@ -31,13 +33,20 @@
     <div align="center">
 {% for scorecard in object_list %}
     <ul>
-    <li><h4><strong><a href="{% url 'golf_app:scorecard_detail' scorecard.id %}" class="scorecard-list">{{ scorecard.course_name }}</a> on<div class="timestamp-sc"> {{ scorecard.timestamp }}</div></strong></h4></li>
-        </ul>
+    <li><h4><strong>
+        <a href="{% url 'golf_app:scorecard_detail' scorecard.id %}" class="scorecard-list">
+        <u>{{ scorecard.course_name }}</u></a> on
+        <div class="timestamp-sc"> {{ scorecard.timestamp }}
+        </div>
+        </strong></h4></li>
+
+    </ul>
         <form method="get" action="{% url 'golf_app:delete_scorecard' scorecard.id %}" class="delete-scorecard-button">
             {% csrf_token %}
             <button type="submit" class="delete">Delete Scorecard</button>
         </form>
 {% endfor %}
+    </div>
     </div>
 {% endblock %}
 </body>
