@@ -6,16 +6,19 @@
     <title></title>
 
 </head>
+<body>
 
 {% block body %}
-<body>
-<div class="container">
-<form method="POST" class="scorecard-name">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add Scorecard</button>
-</form>
-</div>
+  <div class="add-scorecard-container">
+    <div class="container">
+        <form method="POST" class="scorecard-name">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Scorecard</button>
+        </form>
+    </div>
+  </div>
+
 {% endblock %}
 
 </body>

@@ -11,16 +11,14 @@
 {% block body %}
 <body>
 </br>
-<p class="delete-scorecard-field">Are you sure you want to delete the {{ scorecard.course_name }} scorecard?</p>
-<form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit" class="delete"><strong>Delete Scorecard</strong></button>
-
-</form>
-
+            <h4 align="center" class="confirm-del">Are you sure you want to delete the {{ scorecard.course_name }} scorecard?</h4>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                    <div align="center">
+                    <button type="submit" class="delete-scorecard"><strong>Delete Scorecard</strong></button>
+                    </div>
+                </form>
 {% endblock %}
-
 </body>
-
 </html>

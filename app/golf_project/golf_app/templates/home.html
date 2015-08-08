@@ -20,8 +20,8 @@
       <ul class="right hide-on-med-and-down">
       <strong><li><a href="{% url 'golf_app:home' %}">Home</a></li></strong>
       <strong><li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li></strong>
-      <strong><li><a href="{% url 'golf_app:comment_history' %}">Course Comment</a></li></strong>
-      <strong><li><a href="{% url 'golf_app:graph' %}">Scorecard Graphs</a></li></strong>
+      <strong><li><a href="{% url 'golf_app:comment_history' %}">Course Comments</a></li></strong>
+      <strong><li><a href="{% url 'golf_app:graph' %}"></a></li></strong>
           {% if user.id %}
           <strong><li><a href="{% url 'golf_app:logout' %}">Logout</a></li></strong>
             {% else %}
@@ -57,8 +57,8 @@
   </div>
     {% block content %}
     {% endblock %}
-  <div class="container">
-    <table align="center" class="bordered">
+  <div class="container" style="background-color: #B6B6B6">
+    <table align="center" class="bordered" style="background-color: #CFD8DC">
         <tr>
             <td>Average Score:</td>
             <td>{{ user.golfer.average_score }}</td>

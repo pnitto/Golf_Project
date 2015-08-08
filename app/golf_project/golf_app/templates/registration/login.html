@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <p><strong>You must login to access the information on this site.</strong></p>
+    <h5 align="center">You must login to access the information on this site.</h5>
     <div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-        <input type="hidden" name="next" value='{% url "golf_app:home" %}'/>
-    </form>
-</div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+            <input type="hidden" name="next" value='{% url "golf_app:home" %}'/>
+        </form>
+    </div>
+
 {% endblock %}

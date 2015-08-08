@@ -53,10 +53,6 @@ button.add-scorecard {
     padding: 20px;
 }
 
-.scorecard-button-hole {
-    padding: 20px;
-
-}
 label {
     color: white;
     font-size: 1rem;
@@ -93,12 +89,18 @@ label {
     margin: 20px;
 }
 
-p.delete-scorecard-field {
-    color: white;
-}
-
 form.delete-scorecard-button {
     color: black;
+}
+
+button.delete-scorecard {
+    color: white;
+    background-color: red;
+    margin: 20px;
+}
+
+h4.confirm-del {
+    padding-top: 30px;
 }
 
 form.login {
@@ -109,7 +111,7 @@ form.login {
 }
 
 h1.Comment-title {
-    color: white;
+    color: black;
 }
 
 table.hoverable {
@@ -120,4 +122,43 @@ table.hoverable {
 }
 .hole-detail {
     margin: 20px;
+    padding-top: 10px;
+    color: black;
 }
+.hole-detail-info {
+    font-size: x-large;
+}
+.previous-btn {
+    color: red;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    display: inline-block;
+}
+.next-btn {
+    color: red;
+    display: inline-block;
+}
+.previous-next-btn {
+    padding: 5px;
+}
+.back-btn-hole {
+    padding-left: 150px;
+}
+.scorecard-button-hole {
+    padding-top: 35px;
+}
+.scorecard-button {
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.add-scorecard-container {
+    padding-top: 40px;
+}
+ i.large-material-icons {
+     color: red;
+ }

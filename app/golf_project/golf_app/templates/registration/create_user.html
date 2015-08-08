@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
+
 {% block body %}
-<div align="center">
-<a href="{% url 'golf_app:home' %}">Home</a>
-</div>
-<h1>Sign up</h1>
-  <form method="post">
-        {% csrf_token %}
-        Please Enter your first and last name
-        {{ golfer_form.as_p }}
-        {{ user_form.as_p }}
-        <button type="submit" name="register">Create Golfer!</button>
-      <input type="hidden" name="next" value='{% url "golf_app:login"  %}' />
-    </form>
+  <h1 align="center">Sign up</h1>
+    <div class="create-user-container">
+        <div class="container">
+          <form method="post">
+                {% csrf_token %}
+                Please Enter Your First And Last Name
+                {{ golfer_form.as_p }}
+                {{ user_form.as_p }}
+                <button type="submit" name="register">Create Golfer!</button>
+              <input type="hidden" name="next" value='{% url "golf_app:login"  %}' />
+            </form>
+        </div>
+    </div>
 {% endblock %}
