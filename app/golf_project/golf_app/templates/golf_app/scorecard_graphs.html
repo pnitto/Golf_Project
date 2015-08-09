@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -8,11 +7,21 @@
 </head>
 <body>
 {% block content %}
-<div class="graphs">
-<img src="{{ graph_one }}"/>
-<img src="{{ graph_two }}"/>
-<img src="{{ graph_three }}"/>
-</div>
+     <div class="bar-graph" align="center">
+        <div class="container">
+            <img src="{{ graph_one }}"/>
+        </div>
+     </div>
+        <div class="gir-line" align="center">
+            <div class="container">
+                <img src="{{ graph_two }}"/>
+            </div>
+        </div>
+            <div class="fir-line" align="center">
+                <div class="container">
+                    <img src="{{ graph_three }}"/>
+                </div>
+            </div>
 {% endblock %}
 </body>
 </html>

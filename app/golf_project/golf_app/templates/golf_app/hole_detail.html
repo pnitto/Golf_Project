@@ -10,44 +10,45 @@
 
 {% block body %}
     <p align="center">
-            <a href="{%  url 'golf_app:scorecard_detail' hole.scorecard.id %}" class="waves-effect waves-light btn"> {{ hole.scorecard.course_name }} Scorecard</a>
+            <a href="{%  url 'golf_app:scorecard_detail' hole.scorecard.id %}" class="green waves-effect waves-light btn"> {{ hole.scorecard.course_name }} Scorecard</a>
     </p>
-
-    <div class="hole-detail">
-        <div class="container">
-            <h2>Hole {{ hole.hole_number }} Detail</h2>
+    <div class="container" style="background-color: #607D8B;">
+        <div class="white">
+            <div class="hole-detail">
                 <form method="get" action="{% url 'golf_app:update_hole' hole.id %}">
-                    <button type="submit">
-                        <h4>Edit Hole</h4>
-                    </button>
-                    {% csrf_token %}
-                </form>
-    <a href="{% url 'golf_app:scorecard_history' %}">{{ scorecard.course_name }}</a>
-            <div class="hole-detail-info">
-                <ul>
-                    <li><strong>Hole Number:</strong> {{ hole.hole_number }}</li>
-                    <li><strong>Par Type</strong>: {{ hole.par_type }}</li>
-                    <li><strong>Player Score:</strong> {{ hole.player_score }}</li>
-                    <li><strong>GIR:</strong> {{ hole.gir }}</li>
-                    <li><strong>FIR:</strong> {{ hole.fir }}</li>
-                    <li><strong>Timestamp:</strong> {{ hole.timestamp }}</li>
-                </ul>
+                        <button type="submit">
+                            <h4><i class="mdi-content-create" style="width:50px;"></i></h4>
+                        </button>
+                        {% csrf_token %}
+                    </form>
+                <h2>Hole {{ hole.hole_number }} Detail</h2>
+                <a href="{% url 'golf_app:scorecard_history' %}">{{ scorecard.course_name }}</a>
+                <div class="hole-detail-info">
+                    <ul>
+                        <li><strong>Hole Number:</strong> {{ hole.hole_number }}</li>
+                        <li><strong>Par Type</strong>: {{ hole.par_type }}</li>
+                        <li><strong>Player Score:</strong> {{ hole.player_score }}</li>
+                        <li><strong>GIR:</strong> {{ hole.gir }}</li>
+                        <li><strong>FIR:</strong> {{ hole.fir }}</li>
+                        <li><strong>Timestamp:</strong> {{ hole.timestamp }}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <div class="previous-next-btn" align="center">
-        <div class="previous-btn">
+    <div class="previous-next-btn">
+        <div class="previous-btn" style="float: left;">
             {% if hole.previous_hole %}
                 <a href="{% url 'golf_app:hole_detail' hole.previous_hole.id %}"><i class="large material-icons">trending_flat</i></a>
             {% else %}
                 <i class="large material-icons">trending_flat</i>
             {% endif %}
         </div>
-        <div class="next-btn">
+        <div class="next-btn" style="float: right;">
                 {% if hole.next_hole %}
                     <a href="{% url 'golf_app:hole_detail' hole.next_hole.id %}"><i class="large material-icons">trending_flat</i></a>
                 {% else %}
-                          <i class="large material-icons">trending_flat</i>
+                    <i class="large material-icons">trending_flat</i>
                 {% endif %}
         </div>
     </div>

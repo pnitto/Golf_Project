@@ -42,7 +42,7 @@ def user_registration(request):
         golfer_form = GolferForm()
     return render_to_response('registration/create_user.html',{'user_form': user_form, 'golfer_form': golfer_form, 'registered': registered} , context)
 
-login_required(login_url='golf_app:login')
+@login_required(login_url='golf_app:login')
 def graphs(request):
     golfer = Golfer.objects.get(player=request.user)
     graph_one = scatter_to_base64((range(len((golfer.scores_for_scorecards))), (golfer.scores_for_scorecards)), request.user)

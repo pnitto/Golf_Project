@@ -45,8 +45,10 @@ button.delete {
 }
 
 button.add-scorecard {
-    background-color: blue;
+    background-color: forestgreen;
     color: white;
+    width: 300px;
+    letter-spacing: 3px;
 }
 
 .login-register {
@@ -89,13 +91,10 @@ label {
     margin: 20px;
 }
 
-form.delete-scorecard-button {
-    color: black;
-}
 
 button.delete-scorecard {
-    color: white;
     background-color: red;
+    color: white;
     margin: 20px;
 }
 
@@ -129,7 +128,7 @@ table.hoverable {
     font-size: x-large;
 }
 .previous-btn {
-    color: red;
+    color: black;
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
@@ -138,11 +137,11 @@ table.hoverable {
     display: inline-block;
 }
 .next-btn {
-    color: red;
+    color: black;
     display: inline-block;
 }
 .previous-next-btn {
-    padding: 5px;
+    padding: 20px;
 }
 .back-btn-hole {
     padding-left: 150px;
@@ -161,4 +160,44 @@ table.hoverable {
 }
  i.large-material-icons {
      color: red;
+ }
+
+ form.edit-comment {
+     background-color:#C8E6C9;
+ }
+ .edit-comment label {
+     color: black;
+     font-size: 1.25rem;
+ }
+
+ .edit-comment-form {
+     margin-top: 40px;
+ }
+
+ .add-comment-btn {
+    margin-bottom: 20px;
+     background-color: #607D8B;
+     width: 300px;
+     color: lightgoldenrodyellow;
+ }
+
+ button.delete-comment-btn {
+     background-color: orangered;
+     color: white;
+     margin-top: 30px;
+ }
+ h5.delete-comment-q {
+     padding-top: 20px;
+ }
+
+ .bar-graph {
+     padding-top: 20px;
+ }
+
+ .gir-line {
+     padding-top: 20px;
+ }
+
+ .fir-line {
+     padding-top: 20px;
  }

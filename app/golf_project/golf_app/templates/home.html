@@ -21,7 +21,7 @@
       <strong><li><a href="{% url 'golf_app:home' %}">Home</a></li></strong>
       <strong><li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li></strong>
       <strong><li><a href="{% url 'golf_app:comment_history' %}">Course Comments</a></li></strong>
-      <strong><li><a href="{% url 'golf_app:graph' %}"></a></li></strong>
+      <strong><li><a href="{% url 'golf_app:graph' %}">Scorecard Graphs</a></li></strong>
           {% if user.id %}
           <strong><li><a href="{% url 'golf_app:logout' %}">Logout</a></li></strong>
             {% else %}

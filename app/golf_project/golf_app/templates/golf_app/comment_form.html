@@ -9,12 +9,14 @@
 </head>
     <body>
         {% block body %}
-            <div class="container">
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">Submit</button>
-                </form>
+            <div class="edit-comment-form">
+                <div class="container">
+                    <form method="POST" class="edit-comment">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
             </div>
         {% endblock %}
     </body>

@@ -6,20 +6,6 @@
 
 </head>
 <body>
- <nav class="top-nav" role="navigation">
-      <ul class="right hide-on-med-and-down">
-      <strong><li><a href="{% url 'golf_app:home' %}">Home</a></li></strong>
-      <strong><li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li></strong>
-      <strong><li><a href="{% url 'golf_app:comment_history' %}">Course Comment</a></li></strong>
-      <strong><li><a href="{% url 'golf_app:graph' %}">Scorecard Graphs</a></li></strong>
-          {% if user.id %}
-          <strong><li><a href="{% url 'golf_app:logout' %}">Logout</a></li></strong>
-            {% else %}
-            <strong><li><a href="{% url 'golf_app:login' %}">Login</a></li></strong>
-             <strong><li><a href="{% url 'golf_app:user_registration' %}">Sign up</a></li></strong>
-            {% endif %}
-      </ul>
- </nav>
 {% block body %}
 <div class="scorecard-list">
     <h1 align="center">Scorecards</h1>
@@ -27,7 +13,7 @@
 <div align="center" class="add-score-btn">
     <form method="post" action="{% url 'golf_app:create_scorecard' %}">
             {% csrf_token %}
-            <button type="submit" class="add-scorecard"><strong>Add Scorecard</strong></button>
+            <button type="submit" class="add-scorecard"><strong>Start Round</strong></button>
         </form>
 </div>
   <div align="center" class="container">
@@ -44,9 +30,9 @@
                     <td>
                         <div class="timestamp-sc"> {{ scorecard.timestamp }}</div></td>
                     <td>
-                        <form method="get" action="{% url 'golf_app:delete_scorecard' scorecard.id %}" class="delete-scorecard-button">
+                        <form method="get" action="{% url 'golf_app:delete_scorecard' scorecard.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="delete">X</button>
+                            <button type="submit"><i class="material-icons">delete</i></button>
                         </form>
                     </td>
                 </tr>
