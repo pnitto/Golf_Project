@@ -26,7 +26,6 @@ body {
 ul.side-nav {
     background-color: #388E3C;
     font-size: 30px;
-    color: floralwhite;
 }
 nav.top-nav {
     background-color: #388E3C;
@@ -75,12 +74,12 @@ label {
 }
 
 .welcome-font {
-    color: #212121;
+    color: black;
     padding-top: 20px;
 }
 
 .container {
-    background-color: #B6B6B6;
+    background-color: #bdbdbd;
     left-padding: 12px;
     right-padding: 12px;
     padding: 12px;
@@ -140,11 +139,9 @@ table.hoverable {
     color: black;
     display: inline-block;
 }
-.previous-next-btn {
-    padding: 20px;
-}
+
 .back-btn-hole {
-    padding-left: 200px;
+    padding-top: 20px;
 }
 .scorecard-button-hole {
     padding-top: 35px;
@@ -174,11 +171,10 @@ table.hoverable {
      margin-top: 40px;
  }
 
- .add-comment-btn {
-    margin-bottom: 20px;
-     background-color: #607D8B;
+ button.waves-dark{
+     margin-bottom: 20px;
      width: 300px;
-     color: lightgoldenrodyellow;
+     color: white;
  }
 
  button.delete-comment-btn {
@@ -205,3 +201,25 @@ table.hoverable {
  .sc-detail-tb {
 
  }
+
+ button.delete-sc-list{
+     background-color: transparent;
+     outline:none;
+     border: none;
+ }
+button.delete-comment {
+    background-color: transparent;
+    outline: none;
+    border: none;
+
+}
+button.edit-comment {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+button.edit-hole {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}

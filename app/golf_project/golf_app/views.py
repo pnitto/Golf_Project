@@ -45,10 +45,12 @@ def user_registration(request):
 @login_required(login_url='golf_app:login')
 def graphs(request):
     golfer = Golfer.objects.get(player=request.user)
+    top_score = Scorecard.objects.get_best_scorecard(golfer)
+
     graph_one = scatter_to_base64((range(len((golfer.scores_for_scorecards))), (golfer.scores_for_scorecards)), request.user)
     graph_two = scatter_to_base641((range(len((golfer.gir_for_scorecards))), (golfer.gir_for_scorecards)), request.user)
     graph_three = scatter_to_base642((range(len((golfer.fir_for_scorecards))), (golfer.fir_for_scorecards)), request.user)
-    return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one,"graph_two": graph_two, "graph_three": graph_three})
+    return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one,"graph_two": graph_two, "graph_three": graph_three, "top_score": top_score })
 
 def home(request):
     context = {}

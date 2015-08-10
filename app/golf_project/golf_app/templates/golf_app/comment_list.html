@@ -10,7 +10,7 @@
         <div align="center">
             <form method="post" action="{% url 'golf_app:create_comment' %}">
                 {% csrf_token %}
-                <button type="submit" class="add-comment-btn"><strong>Add Comment</strong></button>
+                <button type="submit" class="green waves-dark btn-large"><strong>Add Comment</strong></button>
             </form>
         </div>
     {% for comment in object_list %}
@@ -19,21 +19,27 @@
                 <div class="container" style="padding-top: 5px; padding-bottom: 1px;">
                   <div class="card light-green lighten-4">
                     <div class="card-content black-text">
-                        <div align="right" style="float:right;">
-                            <form id="linked" method="get" action="{% url 'golf_app:delete_comment' comment.id %}">
-                                {% csrf_token %}
-                                <button type="submit"><strong><i class="material-icons">delete</i></strong></button>
-                            </form>
-                        </div>
-                        <div align="left" style="float: left;">
-                            <form id="linked" method="get" action="{% url 'golf_app:update_comment' comment.id %}">
-                                {% csrf_token %}
-                                <button type="submit"><h5><i class="mdi-content-create" style="font-size: 25px;"></i></h5></button>
-                            </form>
-                        </div>
-                        <div align="center">
+                        {% if comment.player == request.user.golfer %}
+                            <div align="right" style="float:right;">
+                                <form id="linked" method="get" action="{% url 'golf_app:delete_comment' comment.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="delete-comment"><strong><i class="material-icons">delete</i></strong></button>
+                                </form>
+                            </div>
+                            <div align="left" style="float:left;">
+                                <form id="linked" method="get" action="{% url 'golf_app:update_comment' comment.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="edit-comment"><i class="mdi-content-create" style="font-size: 22px;"></i></button>
+                                </form>
+                            </div>
+
+                        {% else %}
+
+                        {% endif %}
+                        <div>
                             <br/>
-                            <span class="card-title black-text"><strong>{{ comment.course_name }}</strong></span>
+                            <br/>
+                            <span class="card-title black-text" style="margin-top:5px;"><strong>{{ comment.course_name }}</strong></span>
                             <ul>
                                 <p>
                                <li><strong>Comment:</strong> {{ comment.comment }}</li>
@@ -46,6 +52,7 @@
                    </div>
               </div>
             </div>
+        </div>
             </br>
         {% endfor %}
 {% endblock %}

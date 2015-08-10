@@ -107,12 +107,14 @@ class Scorecard(models.Model):
     course_length = models.PositiveSmallIntegerField(null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    objects = ScorecardManager()
 
     class Meta:
         ordering = ['-timestamp']
 
+
     def __str__(self):
-        return "{} - {}".format(self.course_name, self.timestamp)
+        return "{}".format(self.course_name)
 
     @property
     def par_count(self):

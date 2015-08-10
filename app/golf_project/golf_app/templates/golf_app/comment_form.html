@@ -1,16 +1,10 @@
 {% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
 
-</head>
     <body>
         {% block body %}
             <div class="edit-comment-form">
-                <div class="container">
+                <div class="container" style="padding-top: 1px;">
                     <form method="POST" class="edit-comment">
                         {% csrf_token %}
                         {{ form.as_p }}
@@ -20,4 +14,3 @@
             </div>
         {% endblock %}
     </body>
-</html>

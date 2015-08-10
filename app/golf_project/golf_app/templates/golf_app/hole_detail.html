@@ -10,13 +10,13 @@
 
 {% block body %}
     <p align="center">
-            <a href="{%  url 'golf_app:scorecard_detail' hole.scorecard.id %}" class="green waves-effect waves-light btn"> {{ hole.scorecard.course_name }} Scorecard</a>
+            <a href="{%  url 'golf_app:scorecard_detail' hole.scorecard.id %}" class="green waves-light btn"> {{ hole.scorecard.course_name }} Scorecard</a>
     </p>
     <div class="container" style="background-color: #607D8B; margin-top:20px;">
-        <div class="white" style="padding-top: 10px; padding-bottom: 10px;">
+        <div style="padding-top: 10px; padding-bottom: 10px; background-color:#C8E6C9;">
             <div class="hole-detail">
                 <form method="get" action="{% url 'golf_app:update_hole' hole.id %}">
-                        <button type="submit">
+                        <button type="submit" class="edit-hole">
                             <h4><i class="mdi-content-create" style="width:50px;"></i></h4>
                         </button>
                         {% csrf_token %}
@@ -36,20 +36,24 @@
             </div>
         </div>
     </div>
-    <div class="previous-next-btn">
-        <div class="previous-btn" style="float: left;">
+
+
+    <div class="row">
+        <div class="col s1">
+            <div class="previous-btn">
             {% if hole.previous_hole %}
                 <a href="{% url 'golf_app:hole_detail' hole.previous_hole.id %}"><i class="large material-icons">trending_flat</i></a>
             {% else %}
                 <i class="large material-icons">trending_flat</i>
             {% endif %}
+            </div>
         </div>
-        <div class="next-btn" style="float: right;">
-                {% if hole.next_hole %}
-                    <a href="{% url 'golf_app:hole_detail' hole.next_hole.id %}"><i class="large material-icons">trending_flat</i></a>
-                {% else %}
-                    <i class="large material-icons">trending_flat</i>
-                {% endif %}
+        <div class="col s2">
+            {% if hole.next_hole %}
+                <a href="{% url 'golf_app:hole_detail' hole.next_hole.id %}"><i class="large material-icons">trending_flat</i></a>
+            {% else %}
+                <i class="large material-icons">trending_flat</i>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

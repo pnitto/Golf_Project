@@ -30,15 +30,15 @@
       </ul>
       <div class="side-nav-bar">
           <ul id="nav-mobile" class="side-nav">
-            <li><a href="{% url 'golf_app:home' %}">Home</a></li>
-          <li><a href="{% url 'golf_app:scorecard_history' %}">Scorecards</a></li>
-          <li><a href="{% url 'golf_app:graph' %}">Scorecard Graphs</a></li>
-          <li><a href="{% url 'golf_app:comment_history' %}">Course Comment</a></li>
+            <li><a href="{% url 'golf_app:home' %}" style="color:white;">Home</a></li>
+          <li><a href="{% url 'golf_app:scorecard_history' %}" style="color:white;">Scorecards</a></li>
+          <li><a href="{% url 'golf_app:graph' %}" style="color:white;">Scorecard Graphs</a></li>
+          <li><a href="{% url 'golf_app:comment_history' %}" style="color:white;">Course Comment</a></li>
             {% if user.id %}
-               <li><a href="{% url 'golf_app:logout' %}">Logout</a></li>
+               <li><a href="{% url 'golf_app:logout' %}" style="color:white;">Logout</a></li>
             {% else %}
-                <li><a href="{% url 'golf_app:login' %}">Login</a></li>
-                <li><a href="{% url 'golf_app:user_registration' %}">Sign up</a></li>
+                <li><a href="{% url 'golf_app:login' %}" style="color:white;">Login</a></li>
+                <li><a href="{% url 'golf_app:user_registration' %}" style="color:white;">Sign up</a></li>
             {% endif %}
           </ul>
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -49,8 +49,8 @@
     {% endblock %}
   <div align="center">
     <button class="light green waves-dark btn-large gray begin-round">
-        <a class="black-text" href="{% url 'golf_app:scorecard_history' %}">
-            <strong>Add Scorecard to Begin Round</strong>
+        <a class="white-text" href="{% url 'golf_app:scorecard_history' %}">
+            <strong>Add Scorecard to Begin</strong>
         </a>
     </button>
   </div>
@@ -59,24 +59,23 @@
   <div class="container" style="background-color:#C8E6C9; width:55%; margin-top:20px;">
     <table align="center" class="bordered" style="background-color: white;">
         <tr>
-            <td>Average Score:</td>
-            <td>{{ user.golfer.average_score }}</td>
+            <td><h5>Average Score:</h5></td>
+            <td><h5>{{ user.golfer.average_score }}</h5></td>
         </tr>
         <tr>
-            <td>Average GIR%: </td>
-            <td>{{ user.golfer.average_gir }}</td>
+            <td><h5>Average GIR%:</h5></td>
+            <td><h5>{{ user.golfer.average_gir }}</h5></td>
         </tr>
         <tr>
-            <td>Average FIR %:</td>
-            <td>{{ user.golfer.average_fir }}</td>
+            <td><h5>Average FIR %:</h5></td>
+            <td><h5>{{ user.golfer.average_fir }}</h5></td>
         </tr>
         <tr>
-            <td>Best Score: </td>
-            <td>0.0 </td>
+            <td><h5>Best Score: </h5></td>
+            <td><h5>0.0 </h5></td>
         </tr>
     </table>
   </div>
-  {{ user.golfer.scorecard_names }}
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="{% static 'js/materialize.js' %}"></script>
   <script src="{% static 'js/init.js' %}"></script>

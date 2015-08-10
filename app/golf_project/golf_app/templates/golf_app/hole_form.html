@@ -13,31 +13,31 @@
         <a href="{% url 'golf_app:scorecard_detail' hole.scorecard.id  %}" class="green waves-effect waves-light btn">{{ hole.scorecard.course_name }} Scorecard</a>
     </div>
     <br/>
-    <div class="back-btn-hole">
-        <a href="{% url 'golf_app:hole_detail' hole.id %}" class="btn" style="background-color:#607D8B;"><strong>Back</strong></a>
-    </div>
 <br/>
     <div class="hole-detail">
         <h2 align="center">Hole Number: {{ hole.hole_number }}</h2>
     </div>
-        <div class="container">
-            <form method="post" id="edit-hole">
+        <div class="container" style="background-color:#e0e0e0;">
+            <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
                     <p>
                     {% if field.id_for_label == "id_green_in_regulation" or field.id_for_label == "id_fairway_in_regulation" %}
                    <div class="checkbox-fix">
-                       <label>{{ field.label }}</label>{{ field }}
+                       <label style="color:black;">{{ field.label }}</label>{{ field }}:
                        <label for="{{ field.id_for_label }}"></label>
                    </div>
                     {% else %}
-                        <label>{{ field.label }}</label>{{ field }}
+                        <label style="color:black;">{{ field.label }}:</label>{{ field }}
                     {%  endif %}
                     </p>
                 {% endfor %}
                 <button type="submit" value="update">Submit</button>
             </form>
         </div>
+    <div class="back-btn-hole" align="center">
+        <a href="{% url 'golf_app:hole_detail' hole.id %}" class="btn" style="background-color:#607D8B;"><strong>Back</strong></a>
+    </div>
 {% endblock %}
 
 </body>

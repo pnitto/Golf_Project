@@ -1,15 +1,7 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-
-</head>
-<body>
 
 {% block body %}
-  <div class="add-scorecard-container">
+  <div class="add-scorecard">
     <div class="container">
         <form method="POST" class="scorecard-name">
             {% csrf_token %}
@@ -17,10 +9,5 @@
             <button type="submit">Add Scorecard</button>
         </form>
     </div>
-  </div>
-
+    </div>
 {% endblock %}
-
-</body>
-
-</html>
