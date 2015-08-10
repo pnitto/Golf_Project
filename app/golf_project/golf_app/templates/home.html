@@ -48,7 +48,7 @@
     <h1 align="center" class="welcome-font"> Welcome {{ user.username }}!</h1>
     {% endblock %}
   <div align="center">
-    <button class="waves-effect light green waves-dark btn-large gray begin-round">
+    <button class="light green waves-dark btn-large gray begin-round">
         <a class="black-text" href="{% url 'golf_app:scorecard_history' %}">
             <strong>Add Scorecard to Begin Round</strong>
         </a>
@@ -76,6 +76,7 @@
         </tr>
     </table>
   </div>
+  {{ user.golfer.scorecard_names }}
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="{% static 'js/materialize.js' %}"></script>
   <script src="{% static 'js/init.js' %}"></script>

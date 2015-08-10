@@ -31,13 +31,6 @@ class Golfer(models.Model):
             value.append(x.hole_score)
         return value
 
-    @property
-    def scores_per_scorecard(self):
-        for x in self.scorecard_set.all():
-            course_list = x.scorecard_names
-            score_list = x.hole_score
-            course_score = zip(course_list, score_list)
-            return course_score
 
     @property
     def gir_for_scorecards(self):

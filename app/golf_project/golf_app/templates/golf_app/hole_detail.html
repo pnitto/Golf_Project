@@ -12,8 +12,8 @@
     <p align="center">
             <a href="{%  url 'golf_app:scorecard_detail' hole.scorecard.id %}" class="green waves-effect waves-light btn"> {{ hole.scorecard.course_name }} Scorecard</a>
     </p>
-    <div class="container" style="background-color: #607D8B;">
-        <div class="white">
+    <div class="container" style="background-color: #607D8B; margin-top:20px;">
+        <div class="white" style="padding-top: 10px; padding-bottom: 10px;">
             <div class="hole-detail">
                 <form method="get" action="{% url 'golf_app:update_hole' hole.id %}">
                         <button type="submit">
