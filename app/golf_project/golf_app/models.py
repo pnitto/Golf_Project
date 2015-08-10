@@ -17,6 +17,8 @@ class Golfer(models.Model):
     def __str__(self):
         return "{}".format(self.name)
 
+
+
     @property
     def scorecard_names(self):
         names = self.scorecard_set.all().values_list('course_name')
@@ -28,6 +30,14 @@ class Golfer(models.Model):
         for x in self.scorecard_set.all():
             value.append(x.hole_score)
         return value
+
+    @property
+    def scores_per_scorecard(self):
+        for x in self.scorecard_set.all():
+            course_list = x.scorecard_names
+            score_list = x.hole_score
+            course_score = zip(course_list, score_list)
+            return course_score
 
     @property
     def gir_for_scorecards(self):
@@ -79,6 +89,22 @@ class ScorecardManager(models.Manager):
         scorecards = self.filter(player=player)
         sorted_list = sorted(scorecards, key=lambda scorecards:scorecards.hole_score)
         return sorted_list[0]
+
+    def top_5_player_scores(self,player):
+        scorecards = self.filter(player=player)
+        sorted_list = sorted(scorecards, key=lambda scorecards:scorecards.hole_score)
+        return sorted_list[:5]
+
+    def top_5_gir(self,player):
+        scorecards = self.filter(player=player)
+        sorted_list = sorted(scorecards, key=lambda scorecards:scorecards.gir_percentage)
+        return sorted_list[:5]
+
+    def top_5_fir(self,player):
+        scorecards = self.filter(player=player)
+        sorted_list = sorted(scorecards, key=lambda scorecards:scorecards.fir_percentage)
+        return sorted_list[:5]
+
 
 
 class Scorecard(models.Model):

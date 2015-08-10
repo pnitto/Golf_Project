@@ -77,7 +77,7 @@ class HoleListView(ListView):
 
 class HoleUpdateView(UpdateView):
     model = Hole
-    fields = ['player_score','par_type','green_in_regulation', 'fairway_in_regulation']
+    fields = ['par_type','player_score','green_in_regulation', 'fairway_in_regulation']
     template = "hole_form.html"
     success_url = reverse_lazy("golf_app:scorecard_detail")
 

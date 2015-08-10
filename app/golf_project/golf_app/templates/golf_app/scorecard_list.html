@@ -16,19 +16,18 @@
             <button type="submit" class="add-scorecard"><strong>Start Round</strong></button>
         </form>
 </div>
-  <div align="center" class="container">
+  <div align="center" class="container" style="width:60%;">
     <table align="center" class="hoverable">
-            <th><font color="black">Recent Scorecard List</font></th>
-            <th><font color="black">Date/Time</font></th>
+            <th><font color="black"><h5><strong>Recent Scorecard List</strong></h5></font></th>
+            <th></th>
             <th></th>
                 {% for scorecard in object_list %}
                 <tr>
                     <td>
-                        <a href="{% url 'golf_app:scorecard_detail' scorecard.id %}">
-                        <u>{{ scorecard.course_name }}</u></a>
+                        <a href="{% url 'golf_app:scorecard_detail' scorecard.id %}" style="color: darkgreen;">
+                        <u><h5><strong>{{ scorecard.course_name }}</strong></h5></u>
+                        <div class="timestamp-sc"> {{ scorecard.timestamp }}</div></a>
                     </td>
-                    <td>
-                        <div class="timestamp-sc"> {{ scorecard.timestamp }}</div></td>
                     <td>
                         <form method="get" action="{% url 'golf_app:delete_scorecard' scorecard.id %}">
                             {% csrf_token %}

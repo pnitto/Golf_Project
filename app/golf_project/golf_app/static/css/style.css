@@ -144,7 +144,7 @@ table.hoverable {
     padding: 20px;
 }
 .back-btn-hole {
-    padding-left: 150px;
+    padding-left: 200px;
 }
 .scorecard-button-hole {
     padding-top: 35px;
@@ -200,4 +200,8 @@ table.hoverable {
 
  .fir-line {
      padding-top: 20px;
+ }
+
+ .sc-detail-tb {
+
  }

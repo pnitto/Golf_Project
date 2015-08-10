@@ -18,27 +18,27 @@
      <div align="center"><strong>Over/Under Par(-) Total :</strong> {{ scorecard.over_under_par }}</div>
     </div>
 </br>
-    <div class="container" id="sc-detail-tb" style="background-color:#607D8B">
+    <div class="container" id="sc-detail-tb" style="background-color:#607D8B;">
       <table align="center" class="hoverable" style="background-color:#CFD8DC">
         <thead>
           <tr>
-              <th data-field="id">Player Score</th>
-              <th data-field="id">Hole Number</th>
-              <th data-field="id">Over/Under Par(-)</th>
+              <th data-field="id"><h5>Player Score</h5></th>
+              <th data-field="id"><h5>Hole Number</h5></th>
+              <th data-field="id"><h5>Over/Under Par(-)</h5></th>
           </tr>
         </thead>
         <tbody>
         {% for hole in object.hole_set.all %}
           <tr>
-            <td>{{ hole.player_score }}</td>
-              <td><a href="{% url 'golf_app:hole_detail' hole.id %}">{{ hole.hole_number }}</a></td>
-            <td>{{ hole.hole_over_under_par }}</td>
+            <td><strong>{{ hole.player_score }}</strong></td>
+            <td><strong><h6><a href="{% url 'golf_app:hole_detail' hole.id %}" class="green btn">{{ hole.hole_number }}</a></h6></strong></td>
+            <td><strong>{{ hole.hole_over_under_par }}</strong></td>
           </tr>
         {% endfor %}
         </tbody>
       </table>
     </div>
-    </div>
+</div>
 {% endblock %}
 </body>
 </html>

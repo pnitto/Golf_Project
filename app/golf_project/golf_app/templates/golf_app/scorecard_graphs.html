@@ -8,20 +8,22 @@
 <body>
 {% block content %}
      <div class="bar-graph" align="center">
-        <div class="container">
-            <img src="{{ graph_one }}"/>
+        <div class="container" style="background-color:#9F9F9F; width:45%;">
+            <img src="{{ graph_one }}" class="materialboxed" width="550"/>
         </div>
      </div>
         <div class="gir-line" align="center">
-            <div class="container">
-                <img src="{{ graph_two }}"/>
+            <div class="container" style="background-color:#212121; width:45%;">
+                <img src="{{ graph_two }}" class="materialboxed" width="550"/>
             </div>
         </div>
             <div class="fir-line" align="center">
-                <div class="container">
-                    <img src="{{ graph_three }}"/>
+                <div class="container" style="background-color:#455A64; width:45%;">
+                    <img src="{{ graph_three }}" class="materialboxed" width="550" alt="Click Image to Enlarge">
                 </div>
             </div>
 {% endblock %}
+
 </body>
 </html>
+<a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">Hover me!</a>
