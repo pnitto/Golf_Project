@@ -134,10 +134,13 @@ table.hoverable {
     -o-transform: rotate(180deg);
     transform: rotate(180deg);
     display: inline-block;
+    float: left;
+
 }
 .next-btn {
     color: black;
     display: inline-block;
+    float: right;
 }
 
 .back-btn-hole {
@@ -159,9 +162,6 @@ table.hoverable {
      color: red;
  }
 
- form.edit-comment {
-     background-color:white;
- }
  .edit-comment label {
      color: black;
      font-size: 1.25rem;
@@ -198,10 +198,6 @@ table.hoverable {
      padding-top: 20px;
  }
 
- .sc-detail-tb {
-
- }
-
  button.delete-sc-list{
      background-color: transparent;
      outline:none;
@@ -225,9 +221,39 @@ button.edit-hole {
 }
 .scorecard-name label {
     color:black;
+    font-size: 1.25rem;
 
 }
 .add-scorecard {
     padding-top: 10%;
+    padding-right: 20%;
+    padding-left: 20%;
+    color: black;
+    font-size: 1.25rem;
 
+}
+
+.scorecard-detail-data {
+    text-align:center;
+}
+
+th.id {
+    text-align: center;
+}
+
+.best_score {
+    padding-top: 10px;
+}
+
+.login label {
+    color: black;
+    padding: 20px;
+}
+
+.create-user-container {
+    background-color: ghostwhite;
+}
+
+.create-user-form label{
+    color: black;
 }

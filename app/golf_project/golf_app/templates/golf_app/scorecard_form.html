@@ -2,12 +2,11 @@
 
 {% block body %}
   <div class="add-scorecard">
-    <div class="container" style="background-color: lightslategray;">
         <form method="POST" class="scorecard-name">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Add Scorecard</button>
         </form>
     </div>
-    </div>
+
 {% endblock %}

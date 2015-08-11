@@ -7,24 +7,21 @@
 </head>
 <body>
 {% block content %}
-    <div class="container" align="center">
-        <table align="center">
-            <tr>
-                <td><h4>Best Score:</h4></td>
-            </tr>
-            <tr>
-                <td><h5>{{ top_score }} ({{ top_score.hole_score }})</h5></td>
-            </tr>
-        </table>
+    <div align="center" class="best_score">
+        <ul>
+            <li><h5>Best Score:</h5></li>
+            <li><h5>{{ top_score }} ({{ top_score.hole_score }})</h5></li>
+
+        </ul>
     </div>
      <div class="bar-graph" align="center">
         <div class="container" style="background-color:#9F9F9F; width:50%;">
            <img src="{{ graph_one }}" class="materialboxed" width="550" style="width:100%;">
         </div>
         <ol>
-
-            <li>{{ top_player_scores }}</li>
-            <li>{{ top_player_scores.hole_score }}</li>
+                {% for score in top_player_scores %}
+            <li> {{ top_player_scores }} {{ top_player_scores.hole_score }} </li>
+                {% endfor %}
          </ol>
      </div>
         <div class="gir-line" align="center">

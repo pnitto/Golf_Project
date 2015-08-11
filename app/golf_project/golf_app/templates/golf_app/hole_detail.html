@@ -36,21 +36,24 @@
             </div>
         </div>
     </div>
-            <div class="previous-btn">
-                {% if hole.previous_hole %}
-                    <a href="{% url 'golf_app:hole_detail' hole.previous_hole.id %}"><i class="large material-icons">trending_flat</i></a>
-                {% else %}
-                    <i class="large material-icons">trending_flat</i>
-                {% endif %}
-            </div>
+            <div class="container" style="background-color:ghostwhite;">
+                <div class="previous-btn">
+                    {% if hole.previous_hole %}
+                        <a href="{% url 'golf_app:hole_detail' hole.previous_hole.id %}"><i class="large material-icons" style="color:green;">trending_flat</i></a>
+                    {% else %}
+                        <i class="large material-icons" style="color:red;">trending_flat</i>
+                    {% endif %}
+                </div>
+                <div class="next-btn">
+                    {% if hole.next_hole %}
+                        <a href="{% url 'golf_app:hole_detail' hole.next_hole.id %}"><i class="large material-icons" style="color:green;">trending_flat</i></a>
+                    {% else %}
+                        <i class="large material-icons" style="color:red;">trending_flat</i>
+                    {% endif %}
+                </div>
+                </div>
 
-        <div class="next-btn">
-            {% if hole.next_hole %}
-                <a href="{% url 'golf_app:hole_detail' hole.next_hole.id %}"><i class="large material-icons">trending_flat</i></a>
-            {% else %}
-                <i class="large material-icons">trending_flat</i>
-            {% endif %}
-        </div>
+
 
 {% endblock %}
 </body>

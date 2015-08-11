@@ -10,14 +10,14 @@
 <body>
 {% block body %}
     <div class="scorecard-button-hole" align="center">
-        <a href="{% url 'golf_app:scorecard_detail' hole.scorecard.id  %}" class="green waves-effect waves-light btn">{{ hole.scorecard.course_name }} Scorecard</a>
+        <a href="{% url 'golf_app:scorecard_detail' hole.scorecard.id  %}" class="green waves-light btn">{{ hole.scorecard.course_name }} Scorecard</a>
     </div>
     <br/>
 <br/>
     <div class="hole-detail">
         <h2 align="center">Hole Number: {{ hole.hole_number }}</h2>
     </div>
-        <div class="container" style="background-color:#e0e0e0;">
+        <div class="container" style="background-color:ghostwhite;">
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}

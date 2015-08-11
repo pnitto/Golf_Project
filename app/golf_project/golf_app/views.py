@@ -55,16 +55,18 @@ def graphs(request):
     graph_one = scatter_to_base64((range(len((golfer.scores_for_scorecards))), (golfer.scores_for_scorecards)), request.user)
     graph_two = scatter_to_base641((range(len((golfer.gir_for_scorecards))), (golfer.gir_for_scorecards)), request.user)
     graph_three = scatter_to_base642((range(len((golfer.fir_for_scorecards))), (golfer.fir_for_scorecards)), request.user)
-    return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one,"graph_two": graph_two,
-                                                                 "graph_three": graph_three, "top_score": top_score,
+    return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one,
+                                                                 "graph_two": graph_two,
+                                                                 "graph_three": graph_three,
+                                                                 "top_score": top_score,
                                                                  "top_player_scores" : top_player_scores,
                                                                  "top_player_gir": top_player_gir,
                                                                  "top_player_fir": top_player_fir,})
 
 def home(request):
 
-    golfer = Golfer.objects.get(player=request.user)
-    top_score = Scorecard.objects.get_best_scorecard(golfer)
+    #golfer = Golfer.objects.get(player=request.user)
+    #top_score = Scorecard.objects.get_best_scorecard(golfer)
     context = {}
     return render_to_response("home.html", context, context_instance=RequestContext(request))
 

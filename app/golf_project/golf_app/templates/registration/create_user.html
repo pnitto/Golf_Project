@@ -2,8 +2,8 @@
 
 {% block body %}
   <h1 align="center">Sign up</h1>
-    <div class="create-user-container">
-        <div class="container">
+        <div class="container" style="background-color: ghostwhite;">
+        <div class="create-user-form">
           <form method="post">
                 {% csrf_token %}
                 Please Enter Your First And Last Name
@@ -13,5 +13,5 @@
               <input type="hidden" name="next" value='{% url "golf_app:login"  %}' />
             </form>
         </div>
-    </div>
+        </div>
 {% endblock %}

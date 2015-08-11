@@ -2,13 +2,15 @@
 
 {% block body %}
     <h5 align="center">You must login to access the information on this site.</h5>
-    <div class="container">
+    <div class="container" style="background-color:ghostwhite;">
+    <div class="login">
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Login</button>
             <input type="hidden" name="next" value='{% url "golf_app:home" %}'/>
         </form>
+    </div>
     </div>
 
 {% endblock %}
