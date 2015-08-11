@@ -160,7 +160,7 @@ table.hoverable {
  }
 
  form.edit-comment {
-     background-color:#C8E6C9;
+     background-color:white;
  }
  .edit-comment label {
      color: black;
@@ -222,4 +222,12 @@ button.edit-hole {
     background-color: transparent;
     outline: none;
     border: none;
+}
+.scorecard-name label {
+    color:black;
+
+}
+.add-scorecard {
+    padding-top: 10%;
+
 }

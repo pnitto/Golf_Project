@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from django.shortcuts import redirect
 from statistics import mean
 from rest_framework.compat import MinValueValidator, MaxValueValidator
+from rest_framework.reverse import reverse
 
 
 class Golfer(models.Model):
@@ -16,8 +17,6 @@ class Golfer(models.Model):
 
     def __str__(self):
         return "{}".format(self.name)
-
-
 
     @property
     def scorecard_names(self):
@@ -86,17 +85,17 @@ class ScorecardManager(models.Manager):
     def top_5_player_scores(self,player):
         scorecards = self.filter(player=player)
         sorted_list = sorted(scorecards, key=lambda scorecards:scorecards.hole_score)
-        return sorted_list[:5]
+        return sorted_list[::-1][:5]
 
     def top_5_gir(self,player):
         scorecards = self.filter(player=player)
         sorted_list = sorted(scorecards, key=lambda scorecards:scorecards.gir_percentage)
-        return sorted_list[:5]
+        return sorted_list[::-1][:5]
 
     def top_5_fir(self,player):
         scorecards = self.filter(player=player)
         sorted_list = sorted(scorecards, key=lambda scorecards:scorecards.fir_percentage)
-        return sorted_list[:5]
+        return sorted_list[::-1][:5]
 
 
 

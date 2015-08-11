@@ -7,22 +7,40 @@
 </head>
 <body>
 {% block content %}
+    <div class="container" align="center">
+        <table align="center">
+            <tr>
+                <td><h4>Best Score:</h4></td>
+            </tr>
+            <tr>
+                <td><h5>{{ top_score }} ({{ top_score.hole_score }})</h5></td>
+            </tr>
+        </table>
+    </div>
      <div class="bar-graph" align="center">
         <div class="container" style="background-color:#9F9F9F; width:50%;">
            <img src="{{ graph_one }}" class="materialboxed" width="550" style="width:100%;">
         </div>
+        <ol>
+
+            <li>{{ top_player_scores }}</li>
+            <li>{{ top_player_scores.hole_score }}</li>
+         </ol>
      </div>
         <div class="gir-line" align="center">
             <div class="container" style="background-color:#212121; width:50%; height:auto;">
                 <img src="{{ graph_two }}" class="materialboxed" width="550" style="width:100%;"/>
             </div>
+        {{ top_player_gir }}
         </div>
             <div class="fir-line" align="center">
                 <div class="container" style="background-color:#455A64; width:50%;">
                     <img src="{{ graph_three }}" class="materialboxed" width="550" style="width:100%;">
                 </div>
             </div>
-    {{ top_score }} {{ top_score.hole_score }}
+        {{ top_player_fir }}
+
+
 {% endblock %}
 </body>
 </html>

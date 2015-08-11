@@ -4,7 +4,7 @@
     <body>
         {% block body %}
             <div class="edit-comment-form">
-                <div class="container" style="padding-top: 1px;">
+                <div style="padding-top: 1px; padding-right:20%; padding-left: 20%;">
                     <form method="POST" class="edit-comment">
                         {% csrf_token %}
                         {{ form.as_p }}

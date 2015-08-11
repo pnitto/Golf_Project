@@ -36,26 +36,22 @@
             </div>
         </div>
     </div>
-
-
-    <div class="row">
-        <div class="col s1">
             <div class="previous-btn">
-            {% if hole.previous_hole %}
-                <a href="{% url 'golf_app:hole_detail' hole.previous_hole.id %}"><i class="large material-icons">trending_flat</i></a>
-            {% else %}
-                <i class="large material-icons">trending_flat</i>
-            {% endif %}
+                {% if hole.previous_hole %}
+                    <a href="{% url 'golf_app:hole_detail' hole.previous_hole.id %}"><i class="large material-icons">trending_flat</i></a>
+                {% else %}
+                    <i class="large material-icons">trending_flat</i>
+                {% endif %}
             </div>
-        </div>
-        <div class="col s2">
+
+        <div class="next-btn">
             {% if hole.next_hole %}
                 <a href="{% url 'golf_app:hole_detail' hole.next_hole.id %}"><i class="large material-icons">trending_flat</i></a>
             {% else %}
                 <i class="large material-icons">trending_flat</i>
             {% endif %}
         </div>
-    </div>
+
 {% endblock %}
 </body>
 
