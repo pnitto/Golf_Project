@@ -10,12 +10,12 @@
     </div>
      <div class="bar-graph" align="center">
         <div class="container" style="background-color:#9F9F9F; width:50%;">
-           <img src="{{ graph_one }}" class="materialboxed" width="550" style="width:100%;">
+           <img src="{{ graph_one }}" class="materialboxed" width="600" style="width:100%;">
         </div>
         <ol>
-                {% for score in top_player_scores %}
+                {% comment %}{% for score in top_player_scores %}
                     {{ top_player_scores }} {{ top_player_scores.hole_score }}
-                {% endfor %}
+                {% endfor %}{% endcomment %}
          </ol>
      </div>
         <div class="gir-line" align="center">
