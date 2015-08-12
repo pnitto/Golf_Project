@@ -1,11 +1,5 @@
 {% extends 'base.html' %}
 
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
 {% block content %}
     <div align="center" class="best_score">
         <ul>
@@ -20,7 +14,7 @@
         </div>
         <ol>
                 {% for score in top_player_scores %}
-            <li> {{ top_player_scores }} {{ top_player_scores.hole_score }} </li>
+                    {{ top_player_scores }} {{ top_player_scores.hole_score }}
                 {% endfor %}
          </ol>
      </div>
@@ -36,8 +30,4 @@
                 </div>
             </div>
         {{ top_player_fir }}
-
-
 {% endblock %}
-</body>
-</html>

@@ -61,7 +61,7 @@ def graphs(request):
                                                                  "top_score": top_score,
                                                                  "top_player_scores" : top_player_scores,
                                                                  "top_player_gir": top_player_gir,
-                                                                 "top_player_fir": top_player_fir,})
+                                                                 "top_player_fir": top_player_fir,}, context_instance=RequestContext(request))
 
 def home(request):
 
