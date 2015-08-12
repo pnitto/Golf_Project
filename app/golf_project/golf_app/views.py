@@ -12,7 +12,6 @@ from rest_framework import generics
 from golf_app.converter import scatter_to_base64, scatter_to_base641, scatter_to_base642
 from .models import Hole, Scorecard, Comment, Golfer
 from .forms import UserForm, GolferForm
-import pandas as pd
 import seaborn
 
 
@@ -53,8 +52,11 @@ def graphs(request):
     top_player_fir = Scorecard.objects.top_5_fir(golfer)
 
     graph_one = scatter_to_base64((range(len((golfer.scores_for_scorecards))), (golfer.scores_for_scorecards)), request.user)
-    graph_two = scatter_to_base641((range(len((golfer.gir_for_scorecards))), (golfer.gir_for_scorecards)), request.user)
-    graph_three = scatter_to_base642((range(len((golfer.fir_for_scorecards))), (golfer.fir_for_scorecards)), request.user)
+    data = (request.user.golfer.par_type_list, range(len((golfer.gir_for_scorecards))))
+    graph_two = scatter_to_base641(data, request.user)
+
+    data1= (request.user.golfer.par_type_list, range(len((golfer.fir_for_scorecards))))
+    graph_three = scatter_to_base642(data1, request.user)
     return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one,
                                                                  "graph_two": graph_two,
                                                                  "graph_three": graph_three,
@@ -182,7 +184,7 @@ class ScorecardDetailView(DetailView):
 
 class ScorecardCreateView(CreateView):
     model = Scorecard
-    fields = ['course_name']
+    fields = ['course_name','par_total']
     template = "scorecard_form.html"
     #success_url = reverse_lazy("golf_app:scorecard_history")
 

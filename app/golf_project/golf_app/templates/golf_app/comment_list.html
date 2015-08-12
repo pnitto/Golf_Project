@@ -4,7 +4,7 @@
 {% block body %}
 <h1 class="Comment-title" align="center">Comments</h1>
         <div align="center">
-            <form method="post" action="{% url 'golf_app:create_comment' %}">
+            <form method="get" action="{% url 'golf_app:create_comment' %}">
                 {% csrf_token %}
                 <button type="submit" class="green waves-dark btn-large"><strong>Add Comment</strong></button>
             </form>

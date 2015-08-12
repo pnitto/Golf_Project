@@ -9,8 +9,8 @@
         </ul>
     </div>
      <div class="bar-graph" align="center">
-        <div class="container" style="background-color:#9F9F9F; width:50%;">
-           <img src="{{ graph_one }}" class="materialboxed" width="600" style="width:100%;">
+        <div class="container" style="background-color:ghostwhite; width:100%; height:auto;">
+           <img src="{{ graph_one }}" class="materialboxed" width="60%" style="border:15px solid grey;">
         </div>
         <ol>
                 {% comment %}{% for score in top_player_scores %}
@@ -19,15 +19,15 @@
          </ol>
      </div>
         <div class="gir-line" align="center">
-            <div class="container" style="background-color:#212121; width:50%; height:auto;">
-                <img src="{{ graph_two }}" class="materialboxed" width="550" style="width:100%;"/>
+            <div class="container" style="width:100%; height:auto; background-color:ghostwhite;">
+                <img src="{{ graph_two }}" class="materialboxed" width="60%" style="border:15px solid grey;"/>
             </div>
-        {{ top_player_gir }}
+        {% comment %}{{ top_player_gir }} {% endcomment %}
         </div>
             <div class="fir-line" align="center">
-                <div class="container" style="background-color:#455A64; width:50%;">
-                    <img src="{{ graph_three }}" class="materialboxed" width="550" style="width:100%;">
+                <div class="container" style="background-color:ghostwhite; width:100%; height:auto;">
+                    <img src="{{ graph_three }}" class="materialboxed" width="60%" style="border:15px solid grey;"/>
                 </div>
             </div>
-        {{ top_player_fir }}
+        {% comment %}{{ top_player_fir }}{% endcomment %}
 {% endblock %}

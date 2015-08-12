@@ -11,10 +11,7 @@
     <h1 align="center">Scorecards</h1>
 
 <div align="center" class="add-score-btn">
-    <form method="post" action="{% url 'golf_app:create_scorecard' %}">
-            {% csrf_token %}
-            <button type="submit" class="green waves-dark btn-large"><strong>Begin Round</strong></button>
-        </form>
+    <a href="{% url 'golf_app:create_scorecard' %}" class="green waves-dark btn-large" style="width:25%;">Begin Round</a>
 </div>
   <div align="center" class="container" style="width:60%; background-color:#607D8B">
     <table align="center" class="hoverable">

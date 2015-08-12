@@ -117,6 +117,7 @@ table.hoverable {
 }
 .add-score-btn {
     margin: 20px;
+
 }
 .hole-detail {
     margin: 20px;
@@ -188,6 +189,9 @@ table.hoverable {
 
  .bar-graph {
      padding-top: 20px;
+     background-color:ghostwhite;
+     width:100%;
+     height:auto;
  }
 
  .gir-line {

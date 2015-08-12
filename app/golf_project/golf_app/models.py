@@ -19,6 +19,11 @@ class Golfer(models.Model):
         return "{}".format(self.name)
 
     @property
+    def par_type_list(self):
+        par_type = self.scorecard_set.all().values_list('par_total')
+        return [i[0] for i in par_type]
+
+    @property
     def scorecard_names(self):
         names = self.scorecard_set.all().values_list('course_name')
         return [str(i[0]) for i in names]
