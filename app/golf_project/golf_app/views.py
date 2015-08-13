@@ -55,8 +55,8 @@ def graphs(request):
     data = (request.user.golfer.par_type_list, range(len((golfer.gir_for_scorecards))))
     graph_two = scatter_to_base641(data, request.user)
 
-    data1= (request.user.golfer.par_type_list, range(len((golfer.fir_for_scorecards))))
-    graph_three = scatter_to_base642(data1, request.user)
+    data_1 = (request.user.golfer.par_type_list, range(len((golfer.fir_for_scorecards))))
+    graph_three = scatter_to_base642(data_1, request.user)
     return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one,
                                                                  "graph_two": graph_two,
                                                                  "graph_three": graph_three,
