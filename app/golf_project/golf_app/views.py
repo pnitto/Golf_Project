@@ -42,7 +42,6 @@ def user_registration(request):
     return render_to_response('registration/create_user.html',{'user_form': user_form, 'golfer_form': golfer_form, 'registered': registered} , context)
 
 
-
 @login_required(login_url='golf_app:login')
 def graphs(request):
     golfer = Golfer.objects.get(player=request.user)
@@ -52,10 +51,12 @@ def graphs(request):
     top_player_fir = Scorecard.objects.top_5_fir(golfer)
 
     graph_one = scatter_to_base64((range(len((golfer.scores_for_scorecards))), (golfer.scores_for_scorecards)), request.user)
-    data = (request.user.golfer.par_type_list, range(len((golfer.gir_for_scorecards))))
+    data = (request.user.golfer.par_type_list, (golfer.gir_for_scorecards))
+    print(data)
     graph_two = scatter_to_base641(data, request.user)
 
-    data_1 = (request.user.golfer.par_type_list, range(len((golfer.fir_for_scorecards))))
+    data_1 = (request.user.golfer.par_type_list, (golfer.fir_for_scorecards))
+    print(data_1)
     graph_three = scatter_to_base642(data_1, request.user)
     return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one,
                                                                  "graph_two": graph_two,
