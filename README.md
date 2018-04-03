@@ -1,2 +1,3 @@
 # Golf_Project
-Run virtualenv env - activate virtual env
+Activate Virtual Env - source ./env/bin/activate
+Deactivate - deactivate
