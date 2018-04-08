@@ -1,8 +1,10 @@
+import matplotlib as matplotlib
 import matplotlib.pyplot as plt
+
 from base64 import b64encode
 import io
 
-
+matplotlib.use('Agg')
 
 def scatter_to_base64(data, user):
     plt.barh(*data, align='center', color=['r','b','g','c','m','y','k'])
