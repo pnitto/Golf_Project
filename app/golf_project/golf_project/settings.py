@@ -26,7 +26,7 @@ SECRET_KEY = 'jt4vl&ik$jn#nv$ayn#tfytg4a@oe-jz9ndt(a^(897x-j%*r*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['floating-temple-80357.herokuapp.com']
 
 
 # Application definition
