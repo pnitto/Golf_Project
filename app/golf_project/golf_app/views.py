@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.urls import reverse_lazy, reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
@@ -39,7 +39,7 @@ def user_registration(request):
     else:
         user_form = UserForm()
         golfer_form = GolferForm()
-    return render_to_response('registration/create_user.html',{'user_form': user_form, 'golfer_form': golfer_form, 'registered': registered} , context)
+    return render(request,'registration/create_user.html', {'user_form': user_form, 'golfer_form': golfer_form, 'registered': registered})
 
 
 @login_required(login_url='golf_app:login')
@@ -56,20 +56,20 @@ def graphs(request):
 
     data_1 = (request.user.golfer.par_type_list, (golfer.fir_for_scorecards))
     graph_three = scatter_to_base642(data_1, request.user)
-    return render_to_response('golf_app/scorecard_graphs.html', {"graph_one": graph_one,
+    return render(request,'golf_app/scorecard_graphs.html', {"graph_one": graph_one,
                                                                  "graph_two": graph_two,
                                                                  "graph_three": graph_three,
                                                                  "top_score": top_score,
                                                                  "top_player_scores" : top_player_scores,
                                                                  "top_player_gir": top_player_gir,
-                                                                 "top_player_fir": top_player_fir,}, context_instance=RequestContext(request))
+                                                                 "top_player_fir": top_player_fir})
 
 def home(request):
 
     #golfer = Golfer.objects.get(player=request.user)
     #top_score = Scorecard.objects.get_best_scorecard(golfer)
     context = {}
-    return render_to_response("home.html", context, context_instance=RequestContext(request))
+    return render(request,"home.html" ,context)
 
 # Not sure if I even need serializers yet!!
 class HoleDetailSerializer(serializers.ModelSerializer):

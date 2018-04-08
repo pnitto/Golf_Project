@@ -11,7 +11,7 @@ from rest_framework.reverse import reverse
 
 class Golfer(models.Model):
     name = models.CharField(max_length=50)
-    player = models.OneToOneField(User, related_name='golfer')
+    player = models.OneToOneField(User, related_name='golfer', on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
 
 
@@ -105,7 +105,7 @@ class ScorecardManager(models.Manager):
 
 
 class Scorecard(models.Model):
-    player = models.ForeignKey(Golfer, null=True)
+    player = models.ForeignKey(Golfer, null=True,on_delete=models.CASCADE)
     par_total = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(75)], null=True)
     course_name = models.CharField(max_length=131)
     course_length = models.PositiveSmallIntegerField(null=True)
@@ -155,7 +155,7 @@ def instant_scorecard_creation(sender, instance, created, **kwargs):
 
 
 class Hole(models.Model):
-    scorecard = models.ForeignKey(Scorecard)
+    scorecard = models.ForeignKey(Scorecard,on_delete=models.CASCADE)
     hole_number = models.PositiveSmallIntegerField(validators=[MinValueValidator(1),MaxValueValidator(18)], null=True)
     par_type = models.PositiveSmallIntegerField(validators=[MinValueValidator(3), MaxValueValidator(5)], null=True)
     hole_length = models.PositiveSmallIntegerField(null=True)
@@ -188,10 +188,14 @@ class Hole(models.Model):
 
     @property
     def hole_over_under_par(self):
-        return self.player_score - self.par_type
+        if self.player_score and self.par_type:
+            return self.player_score - self.par_type
+        else:
+            return
+
 
 class Comment(models.Model):
-    player = models.ForeignKey(Golfer)
+    player = models.ForeignKey(Golfer,on_delete=models.CASCADE)
     course_name = models.CharField(max_length=150)
     comment  = models.TextField()
     course_rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(0),MaxValueValidator(5)])

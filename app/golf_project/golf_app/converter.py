@@ -21,7 +21,7 @@ def scatter_to_base641(data,user):
     plt.scatter(*data, color='k')
     plt.ylabel('GIR Totals(%)', weight="bold", fontsize="18")
     plt.xlabel('Par Type',weight="bold", fontsize="18")
-    plt.title('Scatter Plot of Green In Regulation Totals(%) per Scorecard', fontsize="18", weight="bold")
+    plt.title('Scatter Plot of Green In Regulation Totals(%) per Par Type', fontsize="18", weight="bold")
     plt.xticks(data[0], fontsize="12", weight="bold")
     plt.ylim(0,100)
     plt.tight_layout(pad=0.85)

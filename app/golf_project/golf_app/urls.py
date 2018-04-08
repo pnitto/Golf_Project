@@ -8,7 +8,7 @@ from .views import home, HoleListView, HoleUpdateView, user_registration, HoleCr
 
 from django.contrib.auth.views import login, logout
 
-
+app_name ='golf_app'
 
 
 urlpatterns = [
