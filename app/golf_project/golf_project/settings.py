@@ -84,12 +84,12 @@ DATABASES = {
     }
 }
 
-STATICFILES_DIRS = (
-    os.path.join(
-        os.path.dirname(__file__),
-        'static',
-    ),
-)
+#STATICFILES_DIRS = (
+#    os.path.join(
+#        os.path.dirname(__file__),
+#        'static',
+#    ),
+#)
 
 
 # Internationalization
