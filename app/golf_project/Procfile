@@ -1,1 +1,1 @@
-web: python3.5 manage.py collectstatic --noinput; gunicorn golf_project.wsgi --log-file -
+web: gunicorn golf_project.wsgi --log-file -
