@@ -85,14 +85,14 @@ DATABASES = {
     }
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = (
     os.path.join(
-        os.path.dirname(__file__),
-        'static',
+        BASE_DIR,
+        'golf_app/static'
     ),
 )
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 # Internationalization
