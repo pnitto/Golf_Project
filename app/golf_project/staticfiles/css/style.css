@@ -1,0 +1,263 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+table td {
+    color: black;
+    vertical-align: bottom;
+    letter-spacing: 2px;
+}
+body {
+    background-color: ghostwhite;
+}
+
+ul.side-nav {
+    background-color: #388E3C;
+    font-size: 30px;
+}
+nav.top-nav {
+    background-color: #388E3C;
+    color: white;
+}
+
+.scorecard-list {
+    color: #212121;
+    padding-top: 40px;
+}
+
+button.delete {
+    color: white;
+    background-color: red;
+    width: 35px;
+}
+
+button.add-scorecard {
+    background-color: forestgreen;
+    color: white;
+    width: 300px;
+    letter-spacing: 3px;
+}
+
+.login-register {
+    padding: 20px;
+}
+
+label {
+    color: white;
+    font-size: 1rem;
+}
+
+.hole-detail {
+    color: black;
+}
+
+.checkbox-fix label{
+    top: 6px;
+    left: 11px;
+}
+
+.player-info {
+    color: black;
+    font-size: x-large;
+}
+
+.welcome-font {
+    color: black;
+    padding-top: 20px;
+}
+
+.container {
+    background-color: #bdbdbd;
+    left-padding: 12px;
+    right-padding: 12px;
+    padding: 12px;
+}
+
+.begin-round {
+    background-color: #607D8B;
+    margin: 20px;
+}
+
+
+button.delete-scorecard {
+    background-color: red;
+    color: white;
+    margin: 20px;
+}
+
+h4.confirm-del {
+    padding-top: 30px;
+}
+
+form.login {
+    color: black;
+}
+.timestamp-sc {
+    color: black;
+}
+
+h1.Comment-title {
+    color: black;
+}
+
+table.hoverable {
+    background-color: #C8E6C9;
+}
+.add-score-btn {
+    margin: 20px;
+
+}
+.hole-detail {
+    margin: 20px;
+    padding-top: 10px;
+    color: black;
+}
+.hole-detail-info {
+    font-size: x-large;
+}
+.previous-btn {
+    color: black;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    display: inline-block;
+    float: left;
+
+}
+.next-btn {
+    color: black;
+    display: inline-block;
+    float: right;
+}
+
+.back-btn-hole {
+    padding-top: 20px;
+}
+.scorecard-button-hole {
+    padding-top: 35px;
+}
+.scorecard-button {
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.add-scorecard-container {
+    padding-top: 40px;
+}
+ i.large-material-icons {
+     color: red;
+ }
+
+ .edit-comment label {
+     color: black;
+     font-size: 1.25rem;
+ }
+
+ .edit-comment-form {
+     margin-top: 40px;
+ }
+
+ button.waves-dark{
+     margin-bottom: 20px;
+     width: 300px;
+     color: white;
+ }
+
+ button.delete-comment-btn {
+     background-color: orangered;
+     color: white;
+     margin-top: 30px;
+ }
+ h5.delete-comment-q {
+     padding-top: 20px;
+ }
+
+ .bar-graph {
+     padding-top: 20px;
+     background-color:ghostwhite;
+     width:100%;
+     height:auto;
+ }
+
+ .gir-line {
+     padding-top: 20px;
+ }
+
+ .fir-line {
+     padding-top: 20px;
+ }
+
+button.delete-sc-list{
+     background-color: transparent;
+     outline:none;
+     border: none;
+ }
+button.delete-comment {
+    background-color: transparent;
+    outline: none;
+    border: none;
+
+}
+button.edit-comment {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+button.edit-hole {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+.scorecard-name label {
+    color:black;
+    font-size: 1.25rem;
+
+}
+.add-scorecard {
+    padding-top: 10%;
+    padding-right: 20%;
+    padding-left: 20%;
+    color: black;
+    font-size: 1.25rem;
+
+}
+
+.scorecard-detail-data {
+    text-align:center;
+}
+
+th.id {
+    text-align: center;
+}
+
+.best_score {
+    padding-top: 10px;
+}
+
+.login label {
+    color: black;
+    padding: 20px;
+}
+
+.create-user-container {
+    background-color: ghostwhite;
+}
+
+.create-user-form label{
+    color: black;
+}
