@@ -85,9 +85,14 @@ DATABASES = {
     }
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-STATICFILES_DIRS = ()
+STATICFILES_DIRS = (
+    os.path.join(
+        os.path.dirname(__file__),
+        'static',
+    ),
+)
 
 
 # Internationalization
