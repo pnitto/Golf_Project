@@ -26,7 +26,6 @@
 }
 
 .selector .selector-available h2 {
-    background: white url(../img/nav-bg.gif) bottom left repeat-x;
     color: #666;
 }
 
@@ -307,7 +306,7 @@ span.clearable-file-input label {
     color: #666;
     padding: 2px 3px;
     text-align: center;
-    background: #e1e1e1 url(../img/nav-bg.gif) 0 50% repeat-x;
+    background: #e1e1e1;
     border-bottom: 1px solid #ddd;
 }
 
@@ -398,7 +397,7 @@ span.clearable-file-input label {
     margin: 0 !important;
     padding: 0 !important;
     font-size: 10px;
-    background: #e1e1e1 url(../img/nav-bg.gif) 0 50% repeat-x;
+    background: #e1e1e1;
     border-top: 1px solid #ddd;
 }
 
@@ -571,7 +570,7 @@ ul.orderer li.deleted:hover, ul.orderer li.deleted a.selector:hover {
 
 .editinline-stacked .controls {
     clear: both;
-    background: #e1e1e1 url(../img/nav-bg.gif) top left repeat-x;
+    background: #e1e1e1;
     padding: 3px 4px;
     font-size: 11px;
     border-top: 1px solid #ddd;
