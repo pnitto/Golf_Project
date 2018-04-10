@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'golf_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME':'dc8airdktpcc1g',
+        'USER':'hstlzrpbigysxq',
+        'PASSWORD':'46e197fe0b855d18fb8af974deb6dbe118b5ab4c428b2d7dd557eaf3b2fd3993',
+        'HOST':'ec2-107-20-151-189.compute-1.amazonaws.com',
+        'PORT':'5432'
     }
 }
 
