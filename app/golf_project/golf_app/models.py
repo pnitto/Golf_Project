@@ -148,19 +148,19 @@ class Scorecard(models.Model):
 
     @property
     def front_nine_total(self):
-        return sum(self.hole_set.all()[0:9].values_list('player_score',flat=True))
+        return sum(self.hole_set.all().exclude(player_score=None)[0:9].values_list('player_score',flat=True))
 
     @property
     def back_nine_total(self):
-        return sum(self.hole_set.all()[9:18].values_list('player_score',flat=True))
+        return sum(self.hole_set.all().exclude(player_score=None)[9:18].values_list('player_score',flat=True))
 
     @property
     def front_nine_to_par(self):
-        return sum(self.hole_set.all()[0:9].values_list('player_score',flat=True)) - sum(self.hole_set.all()[0:9].values_list('par_type', flat=True))
+        return sum(self.hole_set.all().exclude(player_score=None)[0:9].values_list('player_score',flat=True)) - sum(self.hole_set.all().exclude(par_type=None)[0:9].values_list('par_type', flat=True))
 
     @property
     def back_nine_to_par(self):
-        return sum(self.hole_set.all()[9:18].values_list('player_score',flat=True)) - sum(self.hole_set.all()[9:18  ].values_list('par_type', flat=True))
+        return sum(self.hole_set.all().exclude(player_score=None)[9:18].values_list('player_score',flat=True)) - sum(self.hole_set.all().exclude(par_type=None)[9:18].values_list('par_type', flat=True))
 
 @receiver(post_save, sender=Scorecard, dispatch_uid="18_holes.post_save")
 def instant_scorecard_creation(sender, instance, created, **kwargs):
