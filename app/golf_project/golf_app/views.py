@@ -94,7 +94,7 @@ class HoleListView(ListView):
 
 class HoleUpdateView(UpdateView):
     model = Hole
-    fields = ['par_type','player_score','green_in_regulation', 'fairway_in_regulation']
+    fields = ['par_type','player_score','green_in_regulation', 'fairway_in_regulation','putts']
     template = "hole_form.html"
     success_url = reverse_lazy("golf_app:scorecard_detail")
 
@@ -118,7 +118,7 @@ class HoleUpdateView(UpdateView):
 
 class HoleCreateView(CreateView):
     model = Hole
-    fields = ['hole_number','par_type','player_score', 'green_in_regulation', 'fairway_in_regulation']
+    fields = ['hole_number','par_type','player_score', 'green_in_regulation', 'fairway_in_regulation','putts']
     template_name = "golf_app/create_hole.html"
     #success_url = reverse_lazy("golf_app:scorecard_detail")
 
@@ -142,7 +142,7 @@ class HoleCreateView(CreateView):
 
 class HoleDetailView(DetailView):
     model = Hole
-    fields = ['scorecard', 'hole_number', 'hole_length', 'player_score', 'green_in_regulation','fairway_in_regulation']
+    fields = ['scorecard', 'hole_number', 'hole_length', 'player_score', 'green_in_regulation','fairway_in_regulation','putts']
     success_url = reverse_lazy("golf_app:scorecard_detail")
     template = "golf_app/hole_detail.html"
     slug_field = "id"

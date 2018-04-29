@@ -161,6 +161,9 @@ class Scorecard(models.Model):
     @property
     def back_nine_to_par(self):
         return sum(self.hole_set.all().exclude(player_score=None)[9:18].values_list('player_score',flat=True)) - sum(self.hole_set.all().exclude(par_type=None)[9:18].values_list('par_type', flat=True))
+    @property
+    def putt_total(self):
+        return sum(self.hole_set.all().exclude(putts=None).values_list('putts',flat=True))
 
 @receiver(post_save, sender=Scorecard, dispatch_uid="18_holes.post_save")
 def instant_scorecard_creation(sender, instance, created, **kwargs):
@@ -178,6 +181,7 @@ class Hole(models.Model):
     player_score = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(12)], null=True)
     green_in_regulation = models.BooleanField(default=False)
     fairway_in_regulation = models.BooleanField(default=False)
+    putts = models.PositiveSmallIntegerField(null=True,validators=[MinValueValidator(0),MaxValueValidator(20)])
     timestamp = models.DateTimeField(auto_now_add=True)
 
     class Meta:
